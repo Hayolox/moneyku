@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:moneyku/theme.dart';
 
@@ -31,7 +32,7 @@ class HomeScreen extends StatelessWidget {
             height: 8,
           ),
           Text(
-            'Rp. 3.000.0 00',
+            'Rp. 300.000.0 00',
             style: whiteTextStyle.copyWith(
               fontSize: 25,
               fontWeight: FontWeight.bold,
@@ -76,12 +77,12 @@ class HomeScreen extends StatelessWidget {
             height: 14,
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
                 padding: const EdgeInsets.only(top: 17, bottom: 17),
                 height: 94,
-                width: 170,
+                width: 140,
                 decoration: BoxDecoration(
                   color: whiteTextColor,
                   boxShadow: [
@@ -118,7 +119,7 @@ class HomeScreen extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.only(top: 17, bottom: 17),
                 height: 94,
-                width: 170,
+                width: 140,
                 decoration: BoxDecoration(
                   color: whiteTextColor,
                   boxShadow: [
@@ -158,7 +159,7 @@ class HomeScreen extends StatelessWidget {
             height: 30,
           ),
           Text(
-            'Budget history',
+            'history',
             style: primaryTextStyle.copyWith(
               fontSize: 24,
             ),
@@ -167,20 +168,36 @@ class HomeScreen extends StatelessWidget {
               child: ListView.builder(
             itemCount: 15,
             itemBuilder: (context, index) {
-              return ListTile(
-                leading: const Icon(
-                  Icons.arrow_upward,
-                  color: Color(0xff3CAE5C),
-                ),
-                title: Text(
-                  'Ucapat Selamat Natal bapeda 3x4',
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: primaryTextStyle.copyWith(fontSize: 18),
-                ),
-                subtitle: Text(
-                  'Oct 22, 2021',
-                  style: subtitleTextStyle.copyWith(fontSize: 11),
+              return GestureDetector(
+                onTap: () {
+                  AwesomeDialog(
+                    context: context,
+                    animType: AnimType.SCALE,
+                    dialogType: DialogType.INFO,
+                    title: 'Ucapat Selamat Natal bapeda 3x4',
+                    desc: 'Oct 22, 2021',
+                  ).show();
+                },
+                child: ListTile(
+                  contentPadding: EdgeInsets.zero,
+                  leading: const Icon(
+                    Icons.arrow_upward,
+                    color: Color(0xff3CAE5C),
+                  ),
+                  title: Text(
+                    'Ucapat Selamat Natal bapeda 3x4',
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: primaryTextStyle.copyWith(fontSize: 18),
+                  ),
+                  subtitle: Text(
+                    'Oct 22, 2021',
+                    style: subtitleTextStyle.copyWith(fontSize: 11),
+                  ),
+                  trailing: Text(
+                    '+ 10.000.000',
+                    style: primaryTextStyle.copyWith(fontSize: 14),
+                  ),
                 ),
               );
             },
@@ -193,30 +210,28 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Expanded(
-        child: Container(
-            width: double.infinity,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.topRight,
-                colors: [
-                  backroundColor1,
-                  backroundColor2,
-                ],
-              ),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                title(),
-                const SizedBox(
-                  height: 30,
-                ),
-                Expanded(child: content()),
+      child: Container(
+          width: double.infinity,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.topRight,
+              colors: [
+                backroundColor1,
+                backroundColor2,
               ],
-            )),
-      ),
+            ),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              title(),
+              const SizedBox(
+                height: 30,
+              ),
+              Expanded(child: content()),
+            ],
+          )),
     );
   }
 }
