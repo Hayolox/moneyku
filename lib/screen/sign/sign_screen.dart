@@ -6,14 +6,14 @@ import 'package:provider/provider.dart';
 
 import '../../theme.dart';
 
+// ignore: must_be_immutable
 class SignScreen extends StatelessWidget {
-  const SignScreen({Key? key}) : super(key: key);
-
+  SignScreen({Key? key}) : super(key: key);
+  TextEditingController emailC = TextEditingController();
+  TextEditingController passwordC = TextEditingController();
   @override
   Widget build(BuildContext context) {
     final isKeyboard = MediaQuery.of(context).viewInsets.bottom != 0;
-    TextEditingController emailC = TextEditingController();
-    TextEditingController passwordC = TextEditingController();
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SafeArea(
@@ -55,16 +55,19 @@ class SignScreen extends StatelessWidget {
                     decoration: BoxDecoration(
                       border: Border.all(
                         color: Colors.black,
-                        width: 3,
+                        width: 2,
                       ),
                       borderRadius: BorderRadius.circular(15),
                     ),
                     child: Row(
                       children: [
-                        Text('Email : ',
-                            style: primaryTextStyle.copyWith(
-                              fontSize: 15,
-                            )),
+                        const Icon(
+                          Icons.mail_outline,
+                          color: Color.fromARGB(255, 248, 76, 76),
+                        ),
+                        const SizedBox(
+                          width: 4,
+                        ),
                         Expanded(
                             child: TextFormField(
                           autocorrect: false,
@@ -92,7 +95,7 @@ class SignScreen extends StatelessWidget {
                     decoration: BoxDecoration(
                       border: Border.all(
                         color: Colors.black,
-                        width: 3,
+                        width: 2,
                       ),
                       borderRadius: BorderRadius.circular(15),
                     ),
@@ -101,10 +104,13 @@ class SignScreen extends StatelessWidget {
                         return Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text('Pass: ',
-                                style: primaryTextStyle.copyWith(
-                                  fontSize: 15,
-                                )),
+                            const Icon(
+                              Icons.key,
+                              color: Color.fromARGB(255, 248, 76, 76),
+                            ),
+                            const SizedBox(
+                              width: 4,
+                            ),
                             Expanded(
                                 child: TextFormField(
                               autocorrect: false,

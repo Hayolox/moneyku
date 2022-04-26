@@ -12,7 +12,7 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   int _index = 0;
-  List _body = [
+  final List _body = [
     const HomeScreen(),
     const NoteScreen(),
     const Taskcreen(),

@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(debugShowCheckedModeBanner: false, routes: {
       '/': (context) => const SplashScreen(),
-      '/sign': (context) => const SignScreen(),
+      '/sign': (context) => SignScreen(),
       '/home': (context) => const MainScreen(),
     });
   }
