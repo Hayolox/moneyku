@@ -12,15 +12,15 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   int _index = 0;
-  List body = [
+  List _body = [
     const HomeScreen(),
     const NoteScreen(),
     const Taskcreen(),
   ];
 
-  void _changeSelectedNavBar(int paramIndex) {
+  void _changeSelectedNavBar(int _paramIndex) {
     setState(() {
-      _index = paramIndex;
+      _index = _paramIndex;
     });
   }
 
@@ -48,7 +48,7 @@ class _MainScreenState extends State<MainScreen> {
         showUnselectedLabels: true,
         onTap: _changeSelectedNavBar,
       ),
-      body: body[_index],
+      body: _body[_index],
     );
   }
 }
