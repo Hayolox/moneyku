@@ -215,10 +215,12 @@ class HomeScreen extends StatelessWidget {
           decoration: BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topLeft,
-              end: Alignment.topRight,
+              end: Alignment.bottomRight,
               colors: [
                 backroundColor1,
                 backroundColor2,
+                backroundColor3,
+                backroundColor4,
               ],
             ),
           ),
