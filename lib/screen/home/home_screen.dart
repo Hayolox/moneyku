@@ -1,12 +1,222 @@
 import 'package:flutter/material.dart';
+import 'package:moneyku/theme.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
+  Widget title() {
+    return Padding(
+      padding: const EdgeInsets.only(
+        top: 30,
+        left: 30,
+        right: 30,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Hi akil',
+            style: whiteTextStyle.copyWith(
+              fontSize: 20,
+            ),
+          ),
+          Text(
+            'Welcome back!',
+            style: whiteTextStyle.copyWith(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(
+            height: 8,
+          ),
+          Text(
+            'Rp. 3.000.0 00',
+            style: whiteTextStyle.copyWith(
+              fontSize: 25,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          Text(
+            'your balance',
+            style: whiteTextStyle.copyWith(
+              fontSize: 20,
+              fontWeight: FontWeight.normal,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget content() {
+    return Container(
+      padding: const EdgeInsets.only(
+        top: 30,
+        left: 30,
+        right: 30,
+      ),
+      width: double.infinity,
+      height: double.infinity,
+      decoration: BoxDecoration(
+        color: whiteTextColor,
+        borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Finance Balance',
+            style: primaryTextStyle.copyWith(
+              fontSize: 24,
+            ),
+          ),
+          const SizedBox(
+            height: 14,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Container(
+                padding: const EdgeInsets.only(top: 17, bottom: 17),
+                height: 94,
+                width: 170,
+                decoration: BoxDecoration(
+                  color: whiteTextColor,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 3,
+                      blurRadius: 4,
+                      offset: const Offset(0, 3), // changes position of shadow
+                    ),
+                  ],
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                child: Center(
+                  child: Column(children: [
+                    Text(
+                      'income',
+                      style: primaryTextStyle.copyWith(
+                        fontSize: 14,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 4,
+                    ),
+                    Text(
+                      'Rp. 3.000.000',
+                      style: primaryTextStyle.copyWith(
+                        fontSize: 14,
+                        color: const Color(0xff3CAE5C),
+                      ),
+                    ),
+                  ]),
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.only(top: 17, bottom: 17),
+                height: 94,
+                width: 170,
+                decoration: BoxDecoration(
+                  color: whiteTextColor,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 3,
+                      blurRadius: 4,
+                      offset: const Offset(0, 3), // changes position of shadow
+                    ),
+                  ],
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                child: Center(
+                  child: Column(children: [
+                    Text(
+                      'expenditure',
+                      style: primaryTextStyle.copyWith(
+                        fontSize: 14,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 4,
+                    ),
+                    Text(
+                      'Rp. 3.000.000',
+                      style: primaryTextStyle.copyWith(
+                        fontSize: 14,
+                        color: const Color(0xffFF4328),
+                      ),
+                    ),
+                  ]),
+                ),
+              )
+            ],
+          ),
+          const SizedBox(
+            height: 30,
+          ),
+          Text(
+            'Budget history',
+            style: primaryTextStyle.copyWith(
+              fontSize: 24,
+            ),
+          ),
+          Expanded(
+              child: ListView.builder(
+            itemCount: 15,
+            itemBuilder: (context, index) {
+              return ListTile(
+                leading: const Icon(
+                  Icons.arrow_upward,
+                  color: Color(0xff3CAE5C),
+                ),
+                title: Text(
+                  'Ucapat Selamat Natal bapeda 3x4',
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: primaryTextStyle.copyWith(fontSize: 18),
+                ),
+                subtitle: Text(
+                  'Oct 22, 2021',
+                  style: subtitleTextStyle.copyWith(fontSize: 11),
+                ),
+              );
+            },
+          ))
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text('Home'),
+    return SafeArea(
+      child: Expanded(
+        child: Container(
+            width: double.infinity,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.topRight,
+                colors: [
+                  backroundColor1,
+                  backroundColor2,
+                ],
+              ),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                title(),
+                const SizedBox(
+                  height: 30,
+                ),
+                Expanded(child: content()),
+              ],
+            )),
+      ),
     );
   }
 }
