@@ -142,8 +142,6 @@ class SignScreen extends StatelessWidget {
                           if (condition == 'success') {
                             print('login berhasil');
                             Navigator.pushReplacementNamed(context, '/home');
-
-                            /// Logic sign
                           }
                         },
 

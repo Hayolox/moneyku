@@ -29,10 +29,10 @@ class SignViewModel extends ChangeNotifier {
           'Password  tidak boleh kosong', DialogType.ERROR, context);
     } else {
       final bool isValid = EmailValidator.validate(paramEmail);
-      if (isValid == false) {
-        seeDialog('Format email salah', DialogType.ERROR, context);
-      }
-      return 'success';
+
+      return isValid == false
+          ? seeDialog('Format email salah', DialogType.ERROR, context)
+          : 'success';
     }
   }
 
