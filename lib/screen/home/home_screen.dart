@@ -77,7 +77,7 @@ class HomeScreen extends StatelessWidget {
             height: 14,
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Container(
                 padding: const EdgeInsets.only(top: 17, bottom: 17),
