@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:delayed_display/delayed_display.dart';
 import 'package:flutter/material.dart';
-import 'package:moneyku/screen/sign/sign_screen.dart';
 import 'package:moneyku/theme.dart';
 
 class SplashScreen extends StatefulWidget {

@@ -12,7 +12,7 @@ void main(List<String> args) {
         create: (context) => SignViewModel(),
       )
     ],
-    child: MyApp(),
+    child: const MyApp(),
   ));
 }
 
