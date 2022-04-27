@@ -57,7 +57,10 @@ class NoteScreen extends StatelessWidget {
               child: ListView.builder(
                 itemCount: 10,
                 itemBuilder: (context, index) {
-                  return const ListTile(
+                  return ListTile(
+                    onTap: () {
+                      print('tees');
+                    },
                     title: Text('Diesnatalis Universita Palangkaraya 3x5'),
                     subtitle: Text('12 april 2021'),
                     trailing: Text('Rp 40.000'),
