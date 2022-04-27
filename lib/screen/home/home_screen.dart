@@ -159,7 +159,7 @@ class HomeScreen extends StatelessWidget {
             height: 30,
           ),
           Text(
-            'history',
+            'History',
             style: primaryTextStyle.copyWith(
               fontSize: 24,
             ),

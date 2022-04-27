@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:moneyku/screen/notes/add_%20expenditure_screen.dart';
 import 'package:moneyku/screen/notes/add_income_screen.dart';
+import 'package:moneyku/theme.dart';
 import 'package:transition/transition.dart';
 
 class NoteScreen extends StatelessWidget {
@@ -18,12 +19,22 @@ class NoteScreen extends StatelessWidget {
               child: ListView.builder(
                 itemCount: 10,
                 itemBuilder: (context, index) {
-                  return const Card(
+                  return Card(
                     shadowColor: Colors.black,
                     child: ListTile(
-                      title: Text('Diesnatalis Universita Palangkaraya 3x5'),
-                      subtitle: Text('12 april 2021'),
-                      trailing: Text('Rp 40.000'),
+                      title: Text(
+                        'Diesnatalis Universita Palangkaraya 3x5',
+                        style: primaryTextStyle.copyWith(),
+                      ),
+                      subtitle: const Text(
+                        '12 april 2021',
+                      ),
+                      trailing: Text(
+                        '+ Rp 40.000',
+                        style: primaryTextStyle.copyWith(
+                          color: Colors.green,
+                        ),
+                      ),
                     ),
                   );
                 },
@@ -60,12 +71,22 @@ class NoteScreen extends StatelessWidget {
               child: ListView.builder(
                 itemCount: 10,
                 itemBuilder: (context, index) {
-                  return const Card(
+                  return Card(
                     shadowColor: Colors.black,
                     child: ListTile(
-                      title: Text('Diesnatalis Universita Palangkaraya 3x5'),
-                      subtitle: Text('12 april 2021'),
-                      trailing: Text('Rp 40.000'),
+                      title: Text(
+                        'Diesnatalis Universita Palangkaraya 3x5',
+                        style: primaryTextStyle.copyWith(),
+                      ),
+                      subtitle: const Text(
+                        '12 april 2021',
+                      ),
+                      trailing: Text(
+                        '- Rp 40.000',
+                        style: primaryTextStyle.copyWith(
+                          color: Colors.red,
+                        ),
+                      ),
                     ),
                   );
                 },
