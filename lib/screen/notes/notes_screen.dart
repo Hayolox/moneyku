@@ -163,13 +163,13 @@ class NoteScreen extends StatelessWidget {
               tabs: [
                 Tab(
                   icon: Icon(
-                    Icons.arrow_upward,
+                    Icons.arrow_downward,
                     color: Colors.green,
                   ),
                 ),
                 Tab(
                   icon: Icon(
-                    Icons.arrow_downward,
+                    Icons.arrow_upward,
                     color: Colors.red,
                   ),
                 ),
