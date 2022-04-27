@@ -30,7 +30,7 @@ class Taskcreen extends StatelessWidget {
                   context,
                   Transition(
                       child: EditTaskScreen(),
-                      transitionEffect: TransitionEffect.RIGHT_TO_LEFT),
+                      transitionEffect: TransitionEffect.LEFT_TO_RIGHT),
                 );
               },
               title: const Text('Diesnatalis Universita Palangkaraya 3x5'),
