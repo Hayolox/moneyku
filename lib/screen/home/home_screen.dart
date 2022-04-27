@@ -39,7 +39,7 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
           Text(
-            'your balance',
+            'Total Keuangan',
             style: whiteTextStyle.copyWith(
               fontSize: 20,
               fontWeight: FontWeight.normal,
@@ -68,7 +68,7 @@ class HomeScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Finance Balance',
+            'Keuangan',
             style: primaryTextStyle.copyWith(
               fontSize: 24,
             ),
@@ -98,7 +98,7 @@ class HomeScreen extends StatelessWidget {
                 child: Center(
                   child: Column(children: [
                     Text(
-                      'income',
+                      'Pemasukan',
                       style: primaryTextStyle.copyWith(
                         fontSize: 14,
                       ),
@@ -135,7 +135,7 @@ class HomeScreen extends StatelessWidget {
                 child: Center(
                   child: Column(children: [
                     Text(
-                      'expenditure',
+                      'Pengeluaran',
                       style: primaryTextStyle.copyWith(
                         fontSize: 14,
                       ),
@@ -174,7 +174,7 @@ class HomeScreen extends StatelessWidget {
                     context: context,
                     animType: AnimType.SCALE,
                     dialogType: DialogType.INFO,
-                    title: 'Ucapat Selamat Natal bapeda 3x4',
+                    title: 'ucapan Selamat Natal bapeda 3x4',
                     desc: 'Oct 22, 2021',
                   ).show();
                 },
@@ -185,7 +185,7 @@ class HomeScreen extends StatelessWidget {
                     color: Color(0xff3CAE5C),
                   ),
                   title: Text(
-                    'Ucapat Selamat Natal bapeda 3x4',
+                    'ucapan Selamat Natal bapeda 3x4',
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: primaryTextStyle.copyWith(fontSize: 18),
