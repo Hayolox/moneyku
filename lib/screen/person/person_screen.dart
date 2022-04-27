@@ -28,8 +28,8 @@ class PersonScreen extends StatelessWidget {
                           transitionEffect: TransitionEffect.RIGHT_TO_LEFT),
                     );
                   },
-                  leading: Icon(Icons.person),
-                  title: Text('Akun'),
+                  leading: const Icon(Icons.person),
+                  title: const Text('Akun'),
                 ),
               ],
             ),
