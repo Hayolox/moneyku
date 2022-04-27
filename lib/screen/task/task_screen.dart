@@ -3,6 +3,8 @@ import 'package:moneyku/screen/task/add_task_screen.dart';
 import 'package:moneyku/screen/task/edit_task_screen.dart';
 import 'package:transition/transition.dart';
 
+import '../../theme.dart';
+
 class Taskcreen extends StatelessWidget {
   const Taskcreen({Key? key}) : super(key: key);
 
@@ -35,7 +37,10 @@ class Taskcreen extends StatelessWidget {
                         transitionEffect: TransitionEffect.LEFT_TO_RIGHT),
                   );
                 },
-                title: const Text('Diesnatalis Universita Palangkaraya 3x5'),
+                title: Text(
+                  'Diesnatalis Universita Palangkaraya 3x5',
+                  style: primaryTextStyle.copyWith(),
+                ),
                 subtitle: const Text('12 april 2021'),
                 trailing: const Text('Rp 40.000'),
               ),
