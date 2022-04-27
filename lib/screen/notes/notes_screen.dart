@@ -155,7 +155,6 @@ class NoteScreen extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.only(right: 30, left: 30, top: 30),
         width: double.infinity,
-        color: Colors.white,
         child: Column(
           children: [
             const TabBar(
