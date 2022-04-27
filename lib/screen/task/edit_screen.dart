@@ -5,8 +5,8 @@ import 'package:moneyku/screen/notes/formater_screen.dart';
 import 'package:moneyku/screen/notes/notes_view_model.dart';
 import 'package:provider/provider.dart';
 
-class EditlIncomeScreen extends StatelessWidget {
-  EditlIncomeScreen({Key? key}) : super(key: key);
+class EditTaskScreen extends StatelessWidget {
+  EditTaskScreen({Key? key}) : super(key: key);
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -14,7 +14,7 @@ class EditlIncomeScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Tambah Pemasukan'),
+          title: const Text('Edit Task'),
           centerTitle: true,
         ),
         body: Container(
@@ -38,12 +38,12 @@ class EditlIncomeScreen extends StatelessWidget {
                             prefixIcon: Icon(
                               Icons.title,
                             ),
-                            labelText: 'Pemasukan',
-                            hintText: 'Isi pemasukan',
+                            labelText: 'Judul Task',
+                            hintText: 'Edit Judul Task',
                           ),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'Pemasukan Tidak Boleh Kosong';
+                              return 'Task Tidak Boleh Kosong';
                             }
                             return null;
                           }),
@@ -67,12 +67,12 @@ class EditlIncomeScreen extends StatelessWidget {
                             prefixIcon: Icon(
                               Icons.arrow_upward,
                             ),
-                            labelText: 'Jumlah',
-                            hintText: 'Isi jumlah pemasukan',
+                            labelText: 'Harga Task',
+                            hintText: 'Edit Harga Task',
                           ),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'Jumlah Tidak Boleh Kosong';
+                              return 'Harga Task Tidak Boleh Kosong';
                             }
                             return null;
                           }),

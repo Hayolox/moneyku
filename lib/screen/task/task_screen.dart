@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moneyku/screen/task/add_task_screen.dart';
+import 'package:moneyku/screen/task/edit_screen.dart';
 import 'package:transition/transition.dart';
 
 class Taskcreen extends StatelessWidget {
@@ -25,7 +26,12 @@ class Taskcreen extends StatelessWidget {
           itemBuilder: (context, index) {
             return ListTile(
               onTap: () {
-                print('tes');
+                Navigator.push(
+                  context,
+                  Transition(
+                      child: EditTaskScreen(),
+                      transitionEffect: TransitionEffect.RIGHT_TO_LEFT),
+                );
               },
               title: const Text('Diesnatalis Universita Palangkaraya 3x5'),
               subtitle: const Text('12 april 2021'),
