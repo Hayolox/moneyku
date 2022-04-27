@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:moneyku/screen/notes/add_%20expenditure_screen.dart';
 import 'package:moneyku/screen/notes/add_income_screen.dart';
@@ -23,6 +24,16 @@ class NoteScreen extends StatelessWidget {
                   return Card(
                     shadowColor: Colors.black,
                     child: ListTile(
+                      onLongPress: () {
+                        AwesomeDialog(
+                          context: context,
+                          dialogType: DialogType.QUESTION,
+                          animType: AnimType.BOTTOMSLIDE,
+                          title: 'Yakin Hapus Data',
+                          btnCancelOnPress: () {},
+                          btnOkOnPress: () {},
+                        ).show();
+                      },
                       onTap: () {
                         Navigator.push(
                           context,
@@ -83,6 +94,16 @@ class NoteScreen extends StatelessWidget {
                   return Card(
                     shadowColor: Colors.black,
                     child: ListTile(
+                      onLongPress: () {
+                        AwesomeDialog(
+                          context: context,
+                          dialogType: DialogType.QUESTION,
+                          animType: AnimType.BOTTOMSLIDE,
+                          title: 'Yakin Hapus Data',
+                          btnCancelOnPress: () {},
+                          btnOkOnPress: () {},
+                        ).show();
+                      },
                       onTap: () {
                         Navigator.push(
                           context,
