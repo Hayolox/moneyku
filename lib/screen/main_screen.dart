@@ -31,6 +31,7 @@ class _MainScreenState extends State<MainScreen> {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         bottomNavigationBar: BottomNavigationBar(
           items: const [
             BottomNavigationBarItem(
