@@ -1,6 +1,7 @@
-import 'package:delayed_display/delayed_display.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
+import 'package:moneyku/screen/notes/formater_screen.dart';
 import 'package:moneyku/screen/notes/notes_view_model.dart';
 import 'package:provider/provider.dart';
 
@@ -50,8 +51,12 @@ class AddIncomeScreen extends StatelessWidget {
                         height: 10,
                       ),
                       TextFormField(
-                          keyboardType: TextInputType.emailAddress,
+                          keyboardType: TextInputType.number,
                           textInputAction: TextInputAction.next,
+                          inputFormatters: [
+                            FilteringTextInputFormatter.digitsOnly,
+                            CurrencyPtBrInputFormatter()
+                          ],
                           decoration: const InputDecoration(
                             floatingLabelStyle: TextStyle(color: Colors.green),
                             border: OutlineInputBorder(

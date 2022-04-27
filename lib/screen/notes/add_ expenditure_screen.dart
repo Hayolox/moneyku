@@ -1,8 +1,10 @@
-import 'package:delayed_display/delayed_display.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:moneyku/screen/notes/notes_view_model.dart';
 import 'package:provider/provider.dart';
+
+import 'formater_screen.dart';
 
 class AddExpenditureScreen extends StatelessWidget {
   AddExpenditureScreen({Key? key}) : super(key: key);
@@ -27,6 +29,10 @@ class AddExpenditureScreen extends StatelessWidget {
                       TextFormField(
                           keyboardType: TextInputType.emailAddress,
                           textInputAction: TextInputAction.next,
+                          inputFormatters: [
+                            FilteringTextInputFormatter.digitsOnly,
+                            CurrencyPtBrInputFormatter()
+                          ],
                           decoration: const InputDecoration(
                             floatingLabelStyle: TextStyle(color: Colors.green),
                             border: OutlineInputBorder(
