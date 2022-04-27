@@ -61,9 +61,10 @@ class NoteScreen extends StatelessWidget {
                     onTap: () {
                       print('tees');
                     },
-                    title: Text('Diesnatalis Universita Palangkaraya 3x5'),
-                    subtitle: Text('12 april 2021'),
-                    trailing: Text('Rp 40.000'),
+                    title:
+                        const Text('Diesnatalis Universita Palangkaraya 3x5'),
+                    subtitle: const Text('12 april 2021'),
+                    trailing: const Text('Rp 40.000'),
                   );
                 },
               ),
