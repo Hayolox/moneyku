@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:moneyku/screen/notes/add_%20expenditure_screen.dart';
 import 'package:moneyku/screen/notes/add_income_screen.dart';
+import 'package:moneyku/screen/notes/edit_task_screen.dart';
 import 'package:moneyku/theme.dart';
 import 'package:transition/transition.dart';
 
@@ -22,6 +23,14 @@ class NoteScreen extends StatelessWidget {
                   return Card(
                     shadowColor: Colors.black,
                     child: ListTile(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          Transition(
+                              child: EditNotesScreen(),
+                              transitionEffect: TransitionEffect.RIGHT_TO_LEFT),
+                        );
+                      },
                       title: Text(
                         'Diesnatalis Universita Palangkaraya 3x5',
                         style: primaryTextStyle.copyWith(),
@@ -74,6 +83,14 @@ class NoteScreen extends StatelessWidget {
                   return Card(
                     shadowColor: Colors.black,
                     child: ListTile(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          Transition(
+                              child: EditNotesScreen(),
+                              transitionEffect: TransitionEffect.RIGHT_TO_LEFT),
+                        );
+                      },
                       title: Text(
                         'Diesnatalis Universita Palangkaraya 3x5',
                         style: primaryTextStyle.copyWith(),
