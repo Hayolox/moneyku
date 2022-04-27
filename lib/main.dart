@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:moneyku/screen/main_screen.dart';
 import 'package:moneyku/screen/notes/notes_view_model.dart';
+import 'package:moneyku/screen/person/person_view_model.dart';
 import 'package:moneyku/screen/sign/sign_screen.dart';
 import 'package:moneyku/screen/sign/sign_view_model.dart';
 import 'package:moneyku/screen/splash_screen.dart';
@@ -14,6 +15,9 @@ void main(List<String> args) {
       ),
       ChangeNotifierProvider<NotesViewModel>(
         create: (context) => NotesViewModel(),
+      ),
+      ChangeNotifierProvider<PersonViewModel>(
+        create: (context) => PersonViewModel(),
       )
     ],
     child: const MyApp(),
