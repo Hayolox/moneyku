@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moneyku/screen/main_employee_screen.dart';
 import 'package:moneyku/screen/main_screen.dart';
 import 'package:moneyku/screen/notes/notes_view_model.dart';
 import 'package:moneyku/screen/person/person_view_model.dart';
@@ -33,6 +34,7 @@ class MyApp extends StatelessWidget {
       '/': (context) => const SplashScreen(),
       '/sign': (context) => SignScreen(),
       '/home': (context) => const MainScreen(),
+      '/home-employee': (context) => const MainEmployeeScreen(),
     });
   }
 }

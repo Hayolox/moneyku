@@ -132,7 +132,7 @@ class SignScreen extends StatelessWidget {
                                   if (_formKey.currentState!.validate()) {
                                     _formKey.currentState!.save();
                                     Navigator.of(context)
-                                        .pushReplacementNamed('/home');
+                                        .pushReplacementNamed('/home-employee');
                                   }
                                 },
 
