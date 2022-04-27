@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:moneyku/screen/home/home_screen.dart';
 import 'package:moneyku/screen/notes/notes_screen.dart';
+import 'package:moneyku/screen/person/person_screen.dart';
 import 'package:moneyku/screen/task/task_screen.dart';
 
 class MainScreen extends StatefulWidget {
@@ -16,6 +17,7 @@ class _MainScreenState extends State<MainScreen> {
     const HomeScreen(),
     const NoteScreen(),
     const Taskcreen(),
+    const PersonScreen(),
   ];
 
   void _changeSelectedNavBar(int _paramIndex) {
@@ -41,6 +43,10 @@ class _MainScreenState extends State<MainScreen> {
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.checklist_outlined),
+              label: '',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person),
               label: '',
             ),
           ],
