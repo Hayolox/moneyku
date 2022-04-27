@@ -11,7 +11,7 @@ class Taskcreen extends StatelessWidget {
 
   Widget appBar() {
     return AppBar(
-      title: const Text('Todo List'),
+      title: const Text('Task'),
       centerTitle: true,
     );
   }
@@ -45,7 +45,7 @@ class Taskcreen extends StatelessWidget {
                     context,
                     Transition(
                         child: EditTaskScreen(),
-                        transitionEffect: TransitionEffect.LEFT_TO_RIGHT),
+                        transitionEffect: TransitionEffect.RIGHT_TO_LEFT),
                   );
                 },
                 title: Text(
