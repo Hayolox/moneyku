@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moneyku/screen/task/add_task_screen.dart';
-import 'package:moneyku/screen/task/edit_screen.dart';
+import 'package:moneyku/screen/task/edit_task_screen.dart';
 import 'package:transition/transition.dart';
 
 class Taskcreen extends StatelessWidget {
