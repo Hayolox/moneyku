@@ -24,18 +24,21 @@ class Taskcreen extends StatelessWidget {
         child: ListView.builder(
           itemCount: 10,
           itemBuilder: (context, index) {
-            return ListTile(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  Transition(
-                      child: EditTaskScreen(),
-                      transitionEffect: TransitionEffect.LEFT_TO_RIGHT),
-                );
-              },
-              title: const Text('Diesnatalis Universita Palangkaraya 3x5'),
-              subtitle: const Text('12 april 2021'),
-              trailing: const Text('Rp 40.000'),
+            return Card(
+              shadowColor: Colors.black,
+              child: ListTile(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    Transition(
+                        child: EditTaskScreen(),
+                        transitionEffect: TransitionEffect.LEFT_TO_RIGHT),
+                  );
+                },
+                title: const Text('Diesnatalis Universita Palangkaraya 3x5'),
+                subtitle: const Text('12 april 2021'),
+                trailing: const Text('Rp 40.000'),
+              ),
             );
           },
         ),
