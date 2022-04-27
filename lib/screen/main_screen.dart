@@ -26,29 +26,32 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.edit_road_outlined),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.checklist_outlined),
-            label: '',
-          ),
-        ],
-        currentIndex: _index,
-        selectedItemColor: const Color(0xffFF4328),
-        unselectedItemColor: Colors.grey,
-        showUnselectedLabels: true,
-        onTap: _changeSelectedNavBar,
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        bottomNavigationBar: BottomNavigationBar(
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: '',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.edit_road_outlined),
+              label: '',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.checklist_outlined),
+              label: '',
+            ),
+          ],
+          currentIndex: _index,
+          selectedItemColor: const Color(0xffFF4328),
+          unselectedItemColor: Colors.grey,
+          showUnselectedLabels: true,
+          onTap: _changeSelectedNavBar,
+        ),
+        body: _body[_index],
       ),
-      body: _body[_index],
     );
   }
 }
