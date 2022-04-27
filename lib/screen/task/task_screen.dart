@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:moneyku/screen/task/add_task_screen.dart';
 import 'package:moneyku/screen/task/edit_task_screen.dart';
@@ -29,6 +30,16 @@ class Taskcreen extends StatelessWidget {
             return Card(
               shadowColor: Colors.black,
               child: ListTile(
+                onLongPress: () {
+                  AwesomeDialog(
+                    context: context,
+                    dialogType: DialogType.QUESTION,
+                    animType: AnimType.BOTTOMSLIDE,
+                    title: 'Yakin Hapus Data',
+                    btnCancelOnPress: () {},
+                    btnOkOnPress: () {},
+                  ).show();
+                },
                 onTap: () {
                   Navigator.push(
                     context,
