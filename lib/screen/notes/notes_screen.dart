@@ -18,10 +18,13 @@ class NoteScreen extends StatelessWidget {
               child: ListView.builder(
                 itemCount: 10,
                 itemBuilder: (context, index) {
-                  return const ListTile(
-                    title: Text('Diesnatalis Universita Palangkaraya 3x5'),
-                    subtitle: Text('12 april 2021'),
-                    trailing: Text('Rp 40.000'),
+                  return const Card(
+                    shadowColor: Colors.black,
+                    child: ListTile(
+                      title: Text('Diesnatalis Universita Palangkaraya 3x5'),
+                      subtitle: Text('12 april 2021'),
+                      trailing: Text('Rp 40.000'),
+                    ),
                   );
                 },
               ),
@@ -57,14 +60,13 @@ class NoteScreen extends StatelessWidget {
               child: ListView.builder(
                 itemCount: 10,
                 itemBuilder: (context, index) {
-                  return ListTile(
-                    onTap: () {
-                      print('tees');
-                    },
-                    title:
-                        const Text('Diesnatalis Universita Palangkaraya 3x5'),
-                    subtitle: const Text('12 april 2021'),
-                    trailing: const Text('Rp 40.000'),
+                  return const Card(
+                    shadowColor: Colors.black,
+                    child: ListTile(
+                      title: Text('Diesnatalis Universita Palangkaraya 3x5'),
+                      subtitle: Text('12 april 2021'),
+                      trailing: Text('Rp 40.000'),
+                    ),
                   );
                 },
               ),
