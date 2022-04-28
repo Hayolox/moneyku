@@ -27,6 +27,13 @@ class NotesViewModel extends ChangeNotifier {
   getAllDataTransaction() async {
     changeStatusState(StatusState.loding);
     try {
+      ///get storage user
+      final prefs = await SharedPreferences.getInstance();
+      Map<String, dynamic> decodeUser =
+          json.decode(prefs.getString('user') as String);
+      UserModel _user = UserModel.fromJson(decodeUser);
+      name = _user.name;
+
       Map<String, dynamic> _getTransactionApi =
           await TransactionApi().getAllDataTransaction();
 
@@ -39,15 +46,26 @@ class NotesViewModel extends ChangeNotifier {
       allDataTransaction = _allDataTransactionSecond;
 
       // get status money
-      income = _getTransactionApi['sumIncome'];
-      spending = _getTransactionApi['sumSpending'];
-      total = _getTransactionApi['total'];
 
-      final prefs = await SharedPreferences.getInstance();
-      Map<String, dynamic> decodeUser =
-          json.decode(prefs.getString('user') as String);
-      UserModel _user = UserModel.fromJson(decodeUser);
-      name = _user.name;
+      if (_getTransactionApi['sumIncome'] == 0 &&
+          _getTransactionApi['sumSpending'] == 0) {
+        income = '0';
+        spending = '0';
+        total = 0;
+      } else if (_getTransactionApi['sumIncome'] == 0) {
+        income = '0';
+        spending = _getTransactionApi['sumSpending'];
+        total = _getTransactionApi['total'];
+      } else if (_getTransactionApi['sumSpending'] == 0) {
+        spending = '0';
+        income = _getTransactionApi['sumIncome'];
+        total = _getTransactionApi['total'];
+      } else {
+        income = _getTransactionApi['sumIncome'];
+        spending = _getTransactionApi['sumSpending'];
+        total = _getTransactionApi['total'];
+      }
+
       changeStatusState(StatusState.none);
       notifyListeners();
     } catch (e) {
@@ -84,6 +102,22 @@ class NotesViewModel extends ChangeNotifier {
       changeStatusState(StatusState.none);
       notifyListeners();
     }
+  }
+
+  deleteTransaction(String paramId, int paramIndex, String paramStatus) async {
+    final _response =
+        await TransactionApi().deleteTransaction(int.parse(paramId));
+    if (_response['message'] == 201) {
+      if (paramStatus == 'income') {
+        incomeDataTransaction.removeAt(paramIndex);
+      } else {
+        spendingDataTransaction.removeAt(paramIndex);
+      }
+    } else {
+      changeStatusState(StatusState.error);
+      notifyListeners();
+    }
+    notifyListeners();
   }
 
   Future<void> showDate(BuildContext context) async {

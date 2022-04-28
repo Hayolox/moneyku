@@ -53,7 +53,13 @@ class _NoteScreenState extends State<NoteScreen> {
                               animType: AnimType.BOTTOMSLIDE,
                               title: 'Yakin Hapus Data',
                               btnCancelOnPress: () {},
-                              btnOkOnPress: () {},
+                              btnOkOnPress: () {
+                                value.deleteTransaction(
+                                    value.incomeDataTransaction[index].id
+                                        .toString(),
+                                    index,
+                                    value.incomeDataTransaction[index].status);
+                              },
                             ).show();
                           },
                           onTap: () {
@@ -133,7 +139,14 @@ class _NoteScreenState extends State<NoteScreen> {
                               animType: AnimType.BOTTOMSLIDE,
                               title: 'Yakin Hapus Data',
                               btnCancelOnPress: () {},
-                              btnOkOnPress: () {},
+                              btnOkOnPress: () {
+                                value.deleteTransaction(
+                                    value.spendingDataTransaction[index].id
+                                        .toString(),
+                                    index,
+                                    value
+                                        .spendingDataTransaction[index].status);
+                              },
                             ).show();
                           },
                           onTap: () {

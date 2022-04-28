@@ -1,7 +1,6 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:lottie/lottie.dart';
 import 'package:moneyku/constant/state.dart';
 import 'package:moneyku/screen/loading_screen.dart';
 import 'package:moneyku/screen/notes/notes_view_model.dart';
@@ -38,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Hi ${value.name}',
+                  value.name,
                   style: whiteTextStyle.copyWith(
                     fontSize: 20,
                   ),
@@ -262,7 +261,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Consumer<NotesViewModel>(
       builder: (context, value, child) {
         if (value.state == StatusState.loding) {
-          return LoadingScreen();
+          return const LoadingScreen();
         }
 
         return SafeArea(

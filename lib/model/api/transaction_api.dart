@@ -23,4 +23,9 @@ class TransactionApi {
       throw Exception('Failed to get data');
     }
   }
+
+  Future deleteTransaction(int id) async {
+    final _response = await _dio.delete('$_baseUrl/' + id.toString());
+    return _response.data;
+  }
 }
