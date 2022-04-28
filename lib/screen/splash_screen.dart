@@ -1,8 +1,13 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:delayed_display/delayed_display.dart';
 import 'package:flutter/material.dart';
+import 'package:moneyku/screen/home/home_screen.dart';
 import 'package:moneyku/theme.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../model/user_model.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -19,8 +24,22 @@ class _SplashScreenState extends State<SplashScreen> {
     // TODO: implement initState
     Timer(
       const Duration(seconds: 2),
-      () {
-        Navigator.pushReplacementNamed(context, '/sign');
+      () async {
+        final prefs = await SharedPreferences.getInstance();
+        Map<String, dynamic> decodeUser =
+            json.decode(prefs.getString('user') as String);
+        UserModel _user = UserModel.fromJson(decodeUser);
+        final String? _token = prefs.getString('token');
+
+        if (_token != null) {
+          if (_user.roles == 'admin') {
+            Navigator.pushReplacementNamed(context, '/home');
+          } else {
+            Navigator.pushReplacementNamed(context, '/home-employee');
+          }
+        } else {
+          Navigator.pushReplacementNamed(context, '/sign');
+        }
       },
     );
   }
