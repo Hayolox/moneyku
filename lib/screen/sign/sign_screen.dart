@@ -131,8 +131,10 @@ class SignScreen extends StatelessWidget {
                                 onTap: () {
                                   if (_formKey.currentState!.validate()) {
                                     _formKey.currentState!.save();
-                                    Navigator.of(context)
-                                        .pushReplacementNamed('/home-employee');
+                                    // Navigator.of(context)
+                                    //     .pushReplacementNamed('/home-employee');
+                                    value.sign(value.emailC.text,
+                                        value.passwordC.text, context);
                                   }
                                 },
 

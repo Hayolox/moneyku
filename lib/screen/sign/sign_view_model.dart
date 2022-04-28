@@ -1,4 +1,9 @@
-import 'package:flutter/cupertino.dart';
+import 'dart:convert';
+import 'package:flutter/material.dart';
+import 'package:moneyku/model/api/user_api.dart';
+import 'package:moneyku/model/user_model.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class SignViewModel extends ChangeNotifier {
   bool isHideen = true;
@@ -12,5 +17,39 @@ class SignViewModel extends ChangeNotifier {
       isHideen = true;
     }
     notifyListeners();
+  }
+
+  void sign(
+      String paramName, String paramPassword, BuildContext context) async {
+    try {
+      /// api
+      Map<String, dynamic> _allDataUser =
+          await UserApi().getDataUser(paramName, paramPassword);
+      String _token = _allDataUser['token'];
+      UserModel _user = UserModel.fromJson(_allDataUser['user']);
+
+      /// Storage
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString('token', _token);
+      await prefs.setString('user', json.encode(_user));
+
+      if (_user.roles == 'admin') {
+        Navigator.of(context).pushReplacementNamed('/home');
+      } else {
+        print('employee');
+      }
+      // Map<String, dynamic> decodeUser =
+      //     json.decode(prefs.getString('user') as String);
+      // UserModel _userTes = UserModel.fromJson(decodeUser);
+    } catch (e) {
+      Fluttertoast.showToast(
+          msg: "Email atau Password Salah",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.TOP,
+          timeInSecForIosWeb: 3,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
   }
 }
