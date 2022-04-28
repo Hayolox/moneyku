@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:moneyku/screen/person/edit_user_screen.dart';
+import 'package:moneyku/screen/person/person_view_model.dart';
+import 'package:provider/provider.dart';
 import 'package:transition/transition.dart';
 
 class PersonScreen extends StatelessWidget {
@@ -34,19 +36,26 @@ class PersonScreen extends StatelessWidget {
               ],
             ),
           ),
-          GestureDetector(
-            child: Card(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: const <Widget>[
-                  ListTile(
-                    leading: Icon(Icons.logout),
-                    title: Text('Logout'),
+          Consumer<PersonViewModel>(
+            builder: (context, value, child) {
+              return GestureDetector(
+                onTap: () {
+                  value.logout(context);
+                },
+                child: Card(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: const <Widget>[
+                      ListTile(
+                        leading: Icon(Icons.logout),
+                        title: Text('Logout'),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-            ),
-          ),
+                ),
+              );
+            },
+          )
         ],
       ),
     );

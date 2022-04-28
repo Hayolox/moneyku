@@ -19,7 +19,7 @@ void main(List<String> args) {
       ),
       ChangeNotifierProvider<PersonViewModel>(
         create: (context) => PersonViewModel(),
-      )
+      ),
     ],
     child: const MyApp(),
   ));
