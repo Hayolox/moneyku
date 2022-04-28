@@ -32,8 +32,12 @@ class SignViewModel extends ChangeNotifier {
       final prefs = await SharedPreferences.getInstance();
       await prefs.setString('token', _token);
       await prefs.setString('user', json.encode(_user));
+
+      /// clear emailC and PasswordC
       emailC.clear();
       passwordC.clear();
+
+      /// Conditional
       if (_user.roles == 'admin') {
         Navigator.of(context).pushReplacementNamed('/home');
       } else {
