@@ -32,21 +32,11 @@ class NotesViewModel extends ChangeNotifier {
 
       /// get all data transaction
       List<dynamic> _allData = _getTransactionApi['alldata'];
+      List<TransactionModel> _allDataTransactionSecond = [];
       for (var element in _allData) {
-        allDataTransaction.add(TransactionModel.fromJson(element));
+        _allDataTransactionSecond.add(TransactionModel.fromJson(element));
       }
-
-      /// get  data income transaction
-      List<dynamic> _dataIncome = _getTransactionApi['income'];
-      for (var element in _dataIncome) {
-        incomeDataTransaction.add(TransactionModel.fromJson(element));
-      }
-
-      /// get  data spending transaction
-      List<dynamic> _dataSpending = _getTransactionApi['spending'];
-      for (var element in _dataSpending) {
-        incomeDataTransaction.add(TransactionModel.fromJson(element));
-      }
+      allDataTransaction = _allDataTransactionSecond;
 
       // get status money
       income = _getTransactionApi['sumIncome'];
@@ -62,6 +52,37 @@ class NotesViewModel extends ChangeNotifier {
       notifyListeners();
     } catch (e) {
       changeStatusState(StatusState.error);
+      notifyListeners();
+    }
+  }
+
+  getStatusTransaction() async {
+    changeStatusState(StatusState.loding);
+
+    try {
+      var _getStatusTransactionApi =
+          await TransactionApi().getStatusTransaction();
+
+      /// get  status data income
+      List<dynamic> _income = _getStatusTransactionApi[0];
+      List<TransactionModel> _incomeSecond = [];
+      for (var element in _income) {
+        _incomeSecond.add(TransactionModel.fromJson(element));
+      }
+      incomeDataTransaction = _incomeSecond;
+
+      /// get  status data income
+      List<dynamic> spending = _getStatusTransactionApi[1];
+      List<TransactionModel> _spendingSecond = [];
+      for (var element in spending) {
+        _spendingSecond.add(TransactionModel.fromJson(element));
+      }
+      spendingDataTransaction = _spendingSecond;
+      changeStatusState(StatusState.none);
+      notifyListeners();
+    } catch (e) {
+      changeStatusState(StatusState.none);
+      notifyListeners();
     }
   }
 

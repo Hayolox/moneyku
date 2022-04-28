@@ -13,4 +13,14 @@ class TransactionApi {
       throw Exception('Failed to get data');
     }
   }
+
+  Future getStatusTransaction() async {
+    final _response = await _dio.get(_baseUrl);
+
+    if (_response.statusCode == 200) {
+      return [_response.data['income'], _response.data['spending']];
+    } else {
+      throw Exception('Failed to get data');
+    }
+  }
 }

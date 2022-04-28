@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:moneyku/constant/state.dart';
+import 'package:moneyku/screen/loading_screen.dart';
 import 'package:moneyku/screen/notes/notes_view_model.dart';
 import 'package:moneyku/theme.dart';
 import 'package:provider/provider.dart';
@@ -261,11 +262,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Consumer<NotesViewModel>(
       builder: (context, value, child) {
         if (value.state == StatusState.loding) {
-          return Center(
-            child: Lottie.network(
-                'https://assets1.lottiefiles.com/packages/lf20_usmfx6bp.json',
-                width: 200),
-          );
+          return LoadingScreen();
         }
 
         return SafeArea(
