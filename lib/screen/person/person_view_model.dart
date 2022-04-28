@@ -6,8 +6,8 @@ class PersonViewModel extends ChangeNotifier {
 
   void logout(BuildContext context) async {
     final prefs = await SharedPreferences.getInstance();
-    await prefs.remove('key');
-    await prefs.remove('user');
+    await prefs.setString('token', '');
+    await prefs.setString('user', '');
     Navigator.pushReplacementNamed(context, '/sign');
   }
 }

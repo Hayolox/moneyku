@@ -26,12 +26,13 @@ class _SplashScreenState extends State<SplashScreen> {
       const Duration(seconds: 2),
       () async {
         final prefs = await SharedPreferences.getInstance();
-        Map<String, dynamic> decodeUser =
-            json.decode(prefs.getString('user') as String);
-        UserModel _user = UserModel.fromJson(decodeUser);
+
         final String? _token = prefs.getString('token');
 
-        if (_token != null) {
+        if (_token != '') {
+          Map<String, dynamic> decodeUser =
+              json.decode(prefs.getString('user') as String);
+          UserModel _user = UserModel.fromJson(decodeUser);
           if (_user.roles == 'admin') {
             Navigator.pushReplacementNamed(context, '/home');
           } else {
