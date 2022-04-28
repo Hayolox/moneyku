@@ -10,7 +10,7 @@ class MainEmployeeScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainEmployeeScreen> {
-  int _index = 1;
+  int _index = 0;
   final List _body = [
     const EmployeeScreen(),
     const PersonScreen(),
