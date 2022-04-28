@@ -76,7 +76,7 @@ class _NoteScreenState extends State<NoteScreen> {
                             style: primaryTextStyle.copyWith(),
                           ),
                           subtitle: Text(
-                            value.incomeDataTransaction[index].title,
+                            value.incomeDataTransaction[index].createdAt,
                           ),
                           trailing: Text(
                             NumberFormat.currency(
