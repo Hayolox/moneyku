@@ -32,15 +32,13 @@ class SignViewModel extends ChangeNotifier {
       final prefs = await SharedPreferences.getInstance();
       await prefs.setString('token', _token);
       await prefs.setString('user', json.encode(_user));
-
+      emailC.clear();
+      passwordC.clear();
       if (_user.roles == 'admin') {
         Navigator.of(context).pushReplacementNamed('/home');
       } else {
-        print('employee');
+        Navigator.of(context).pushReplacementNamed('/home-employee');
       }
-      // Map<String, dynamic> decodeUser =
-      //     json.decode(prefs.getString('user') as String);
-      // UserModel _userTes = UserModel.fromJson(decodeUser);
     } catch (e) {
       Fluttertoast.showToast(
           msg: "Email atau Password Salah",
