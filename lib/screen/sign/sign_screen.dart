@@ -27,7 +27,7 @@ class SignScreen extends StatelessWidget {
 
                         /// Logo
                         DelayedDisplay(
-                          delay: const Duration(seconds: 1),
+                          delay: const Duration(seconds: 2),
                           child: Padding(
                             padding: const EdgeInsets.only(top: 30),
                             child: Lottie.network(
@@ -131,8 +131,7 @@ class SignScreen extends StatelessWidget {
                                 onTap: () {
                                   if (_formKey.currentState!.validate()) {
                                     _formKey.currentState!.save();
-                                    // Navigator.of(context)
-                                    //     .pushReplacementNamed('/home-employee');
+
                                     value.sign(value.emailC.text,
                                         value.passwordC.text, context);
                                   }
