@@ -25,6 +25,8 @@ class NotesViewModel extends ChangeNotifier {
   late int total;
   StatusState state = StatusState.loding;
 
+  get convertToTimesTamp => null;
+
   changeStatusState(StatusState s) {
     state = s;
     notifyListeners();
