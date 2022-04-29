@@ -6,9 +6,15 @@ class UserApi {
   final _dio = Dio();
 
   Future getDataUser(String email, String password) async {
-    final _response =
-        await _dio.post(_baseUrl, data: {"email": email, "password": password});
-
+    final _response = await _dio.post(
+      _baseUrl,
+      data: {"email": email, "password": password},
+      options: Options(
+          followRedirects: false,
+          validateStatus: (status) {
+            return status! < 500;
+          }),
+    );
     if (_response.statusCode == 200) {
       return _response.data;
     } else {
