@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:flutter_masked_text2/flutter_masked_text2.dart';
 import 'package:intl/intl.dart';
-import 'package:moneyku/screen/notes/formater_screen.dart';
 import 'package:moneyku/screen/notes/notes_view_model.dart';
 import 'package:provider/provider.dart';
 
@@ -11,9 +10,15 @@ class AddIncomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final viewModel = Provider.of<NotesViewModel>(context);
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () async => Navigator.of(context)
+                .pop(await viewModel.getStatusTransaction()),
+          ),
           title: const Text('Tambah Pemasukan'),
           centerTitle: true,
         ),
@@ -26,6 +31,7 @@ class AddIncomeScreen extends StatelessWidget {
                   return Column(
                     children: [
                       TextFormField(
+                          controller: value.titleC,
                           keyboardType: TextInputType.emailAddress,
                           textInputAction: TextInputAction.next,
                           decoration: const InputDecoration(
@@ -51,12 +57,9 @@ class AddIncomeScreen extends StatelessWidget {
                         height: 10,
                       ),
                       TextFormField(
+                          controller: value.priceC,
                           keyboardType: TextInputType.number,
-                          textInputAction: TextInputAction.next,
-                          inputFormatters: [
-                            FilteringTextInputFormatter.digitsOnly,
-                            CurrencyPtBrInputFormatter()
-                          ],
+                          textInputAction: TextInputAction.done,
                           decoration: const InputDecoration(
                             floatingLabelStyle: TextStyle(color: Colors.green),
                             border: OutlineInputBorder(
@@ -109,7 +112,7 @@ class AddIncomeScreen extends StatelessWidget {
                                 width: 10,
                               ),
                               Text(
-                                DateFormat('dd-MM-yyy').format(value.dueDate),
+                                DateFormat('yyy-MM-dd').format(value.dueDate),
                                 style: const TextStyle(
                                   color: Colors.grey,
                                 ),
@@ -121,9 +124,16 @@ class AddIncomeScreen extends StatelessWidget {
                       Center(
                           child: ElevatedButton(
                         onPressed: () {
+                          var convertToInteger =
+                              MaskedTextController(text: '', mask: '000000000');
+                          convertToInteger.updateText(value.priceC.text);
+
                           if (_formKey.currentState!.validate()) {
                             _formKey.currentState!.save();
-                            print(value.currenDate);
+                            value.addTransactionIncome(
+                                value.titleC.text,
+                                int.parse(convertToInteger.text),
+                                value.dueDate.toString());
                           }
                         },
                         child: const Text('Submit'),

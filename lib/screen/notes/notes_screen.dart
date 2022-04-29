@@ -84,7 +84,7 @@ class _NoteScreenState extends State<NoteScreen> {
                                     symbol: 'Rp ',
                                     decimalDigits: 0)
                                 .format(int.parse(
-                                    value.allDataTransaction[index].price)),
+                                    value.incomeDataTransaction[index].price)),
                             style: primaryTextStyle.copyWith(
                               color: Colors.green,
                             ),
@@ -170,8 +170,8 @@ class _NoteScreenState extends State<NoteScreen> {
                                     locale: 'id',
                                     symbol: 'Rp ',
                                     decimalDigits: 0)
-                                .format(int.parse(
-                                    value.allDataTransaction[index].price)),
+                                .format(int.parse(value
+                                    .spendingDataTransaction[index].price)),
                             style: primaryTextStyle.copyWith(
                               color: Colors.red,
                             ),

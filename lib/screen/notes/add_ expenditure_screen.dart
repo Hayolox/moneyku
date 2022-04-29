@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:flutter_masked_text2/flutter_masked_text2.dart';
 import 'package:intl/intl.dart';
 import 'package:moneyku/screen/notes/notes_view_model.dart';
 import 'package:provider/provider.dart';
-
-import 'formater_screen.dart';
 
 class AddExpenditureScreen extends StatelessWidget {
   AddExpenditureScreen({Key? key}) : super(key: key);
@@ -12,9 +10,15 @@ class AddExpenditureScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final viewModel = Provider.of<NotesViewModel>(context);
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () async => Navigator.of(context)
+                .pop(await viewModel.getStatusTransaction()),
+          ),
           title: const Text('Tambah Pengeluaran'),
           centerTitle: true,
         ),
@@ -27,12 +31,9 @@ class AddExpenditureScreen extends StatelessWidget {
                   return Column(
                     children: [
                       TextFormField(
+                          controller: value.titleC,
                           keyboardType: TextInputType.emailAddress,
                           textInputAction: TextInputAction.next,
-                          inputFormatters: [
-                            FilteringTextInputFormatter.digitsOnly,
-                            CurrencyPtBrInputFormatter()
-                          ],
                           decoration: const InputDecoration(
                             floatingLabelStyle: TextStyle(color: Colors.green),
                             border: OutlineInputBorder(
@@ -56,8 +57,9 @@ class AddExpenditureScreen extends StatelessWidget {
                         height: 10,
                       ),
                       TextFormField(
-                          keyboardType: TextInputType.emailAddress,
-                          textInputAction: TextInputAction.next,
+                          controller: value.priceC,
+                          keyboardType: TextInputType.number,
+                          textInputAction: TextInputAction.done,
                           decoration: const InputDecoration(
                             floatingLabelStyle: TextStyle(color: Colors.green),
                             border: OutlineInputBorder(
@@ -110,7 +112,7 @@ class AddExpenditureScreen extends StatelessWidget {
                                 width: 10,
                               ),
                               Text(
-                                DateFormat('dd-MM-yyy').format(value.dueDate),
+                                DateFormat('yyy-MM-dd').format(value.dueDate),
                                 style: const TextStyle(
                                   color: Colors.grey,
                                 ),
@@ -122,9 +124,16 @@ class AddExpenditureScreen extends StatelessWidget {
                       Center(
                           child: ElevatedButton(
                         onPressed: () {
+                          var convertToInteger =
+                              MaskedTextController(text: '', mask: '000000000');
+                          convertToInteger.updateText(value.priceC.text);
+
                           if (_formKey.currentState!.validate()) {
                             _formKey.currentState!.save();
-                            print('berhasil');
+                            value.addTransactionExpenditure(
+                                value.titleC.text,
+                                int.parse(convertToInteger.text),
+                                value.dueDate.toString());
                           }
                         },
                         child: const Text('Submit'),

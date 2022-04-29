@@ -24,6 +24,44 @@ class TransactionApi {
     }
   }
 
+  Future addTransactionIncome(
+    String title,
+    int price,
+    String date,
+  ) async {
+    final _response = await _dio.post(_baseUrl, data: {
+      "title": title,
+      "price": price,
+      "status": "income",
+      "created_at": date
+    });
+
+    if (_response.statusCode == 200) {
+      return _response.data;
+    } else {
+      throw Exception('Failed to get data');
+    }
+  }
+
+  Future addTransactionExpenditure(
+    String title,
+    int price,
+    String date,
+  ) async {
+    final _response = await _dio.post(_baseUrl, data: {
+      "title": title,
+      "price": price,
+      "status": "spending",
+      "created_at": date
+    });
+
+    if (_response.statusCode == 200) {
+      return _response.data;
+    } else {
+      throw Exception('Failed to get data');
+    }
+  }
+
   Future deleteTransaction(int id) async {
     final _response = await _dio.delete('$_baseUrl/' + id.toString());
     return _response.data;

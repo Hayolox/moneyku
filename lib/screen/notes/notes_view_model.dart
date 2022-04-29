@@ -4,13 +4,19 @@ import 'package:flutter/material.dart';
 import 'package:moneyku/model/api/transaction_api.dart';
 import 'package:moneyku/model/transaction_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import 'package:flutter_masked_text2/flutter_masked_text2.dart';
 import '../../constant/state.dart';
+import '../../future_pub_dev/toast.dart';
 import '../../model/user_model.dart';
 
 class NotesViewModel extends ChangeNotifier {
   DateTime dueDate = DateTime.now();
   final currenDate = DateTime.now();
+
+  TextEditingController titleC = TextEditingController();
+  var priceC = MaskedTextController(
+    mask: '000.000.000',
+  );
 
   List<TransactionModel> allDataTransaction = [];
   List<TransactionModel> incomeDataTransaction = [];
@@ -104,18 +110,49 @@ class NotesViewModel extends ChangeNotifier {
     }
   }
 
+  addTransactionIncome(
+    String paramTitle,
+    int paramPrice,
+    String paramDate,
+  ) async {
+    try {
+      await TransactionApi()
+          .addTransactionIncome(paramTitle, paramPrice, paramDate);
+      titleC.clear();
+      priceC.clear();
+      toastInformation('Data Berhasil Ditambahkan');
+    } catch (e) {
+      toastAlert('Gagal Menambahkan Data');
+    }
+  }
+
+  addTransactionExpenditure(
+    String paramTitle,
+    int paramPrice,
+    String paramDate,
+  ) async {
+    try {
+      await TransactionApi()
+          .addTransactionExpenditure(paramTitle, paramPrice, paramDate);
+      titleC.clear();
+      priceC.clear();
+      toastInformation('Data Berhasil Ditambahkan');
+    } catch (e) {
+      toastAlert('Gagal Menambahkan Data');
+    }
+  }
+
   deleteTransaction(String paramId, int paramIndex, String paramStatus) async {
-    final _response =
-        await TransactionApi().deleteTransaction(int.parse(paramId));
-    if (_response['message'] == 201) {
+    try {
+      await TransactionApi().deleteTransaction(int.parse(paramId));
       if (paramStatus == 'income') {
         incomeDataTransaction.removeAt(paramIndex);
       } else {
         spendingDataTransaction.removeAt(paramIndex);
       }
-    } else {
-      changeStatusState(StatusState.error);
-      notifyListeners();
+      toastInformation('Berhasil hapus Data');
+    } catch (e) {
+      toastAlert('Gagal hapus Data');
     }
     notifyListeners();
   }
