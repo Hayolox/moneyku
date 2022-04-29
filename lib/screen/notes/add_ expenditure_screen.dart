@@ -128,12 +128,17 @@ class AddExpenditureScreen extends StatelessWidget {
                               MaskedTextController(text: '', mask: '000000000');
                           convertToInteger.updateText(value.priceC.text);
 
+                          String second = DateFormat('hh:mm:ss')
+                              .format(DateTime.now())
+                              .toString();
+                          String date =
+                              '${value.dueDate.year}-${value.dueDate.month}-${value.dueDate.day} ' +
+                                  second;
+
                           if (_formKey.currentState!.validate()) {
                             _formKey.currentState!.save();
-                            value.addTransactionExpenditure(
-                                value.titleC.text,
-                                int.parse(convertToInteger.text),
-                                value.dueDate.toString());
+                            value.addTransactionExpenditure(value.titleC.text,
+                                int.parse(convertToInteger.text), date);
                           }
                         },
                         child: const Text('Submit'),
