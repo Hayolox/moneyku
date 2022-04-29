@@ -29,7 +29,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
         final String? _token = prefs.getString('token');
 
-        if (_token != '') {
+        if (_token != null && _token.isNotEmpty) {
           Map<String, dynamic> decodeUser =
               json.decode(prefs.getString('user') as String);
           UserModel _user = UserModel.fromJson(decodeUser);
