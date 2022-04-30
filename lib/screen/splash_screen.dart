@@ -1,9 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
-
 import 'package:delayed_display/delayed_display.dart';
 import 'package:flutter/material.dart';
-import 'package:moneyku/screen/home/home_screen.dart';
 import 'package:moneyku/theme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

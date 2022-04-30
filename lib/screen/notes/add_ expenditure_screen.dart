@@ -4,7 +4,6 @@ import 'package:flutter_masked_text2/flutter_masked_text2.dart';
 import 'package:intl/intl.dart';
 import 'package:moneyku/screen/notes/notes_view_model.dart';
 import 'package:provider/provider.dart';
-
 import '../../formating/rupiah.dart';
 
 class AddExpenditureScreen extends StatelessWidget {

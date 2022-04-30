@@ -123,7 +123,6 @@ class EditNotesScreen extends StatelessWidget {
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
                             _formKey.currentState!.save();
-                            print(value.currenDate);
                           }
                         },
                         child: const Text('Submit'),

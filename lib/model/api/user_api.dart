@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:moneyku/model/user_model.dart';
 
 class UserApi {
   final _baseUrl = 'https://api.hizbullahhaidar.xyz/api/token/generator';
