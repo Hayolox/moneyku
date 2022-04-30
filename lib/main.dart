@@ -6,6 +6,7 @@ import 'package:moneyku/screen/person/person_view_model.dart';
 import 'package:moneyku/screen/sign/sign_screen.dart';
 import 'package:moneyku/screen/sign/sign_view_model.dart';
 import 'package:moneyku/screen/splash_screen.dart';
+import 'package:moneyku/screen/task/task_view_model.dart';
 import 'package:provider/provider.dart';
 
 void main(List<String> args) {
@@ -16,6 +17,9 @@ void main(List<String> args) {
       ),
       ChangeNotifierProvider<NotesViewModel>(
         create: (context) => NotesViewModel(),
+      ),
+      ChangeNotifierProvider<TaskViewModel>(
+        create: (context) => TaskViewModel(),
       ),
       ChangeNotifierProvider<PersonViewModel>(
         create: (context) => PersonViewModel(),
