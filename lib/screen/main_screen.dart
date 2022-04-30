@@ -36,23 +36,23 @@ class _MainScreenState extends State<MainScreen> {
           items: const [
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
-              label: '',
+              label: 'Home',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.edit_road_outlined),
-              label: '',
+              label: 'Transaksi',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.checklist_outlined),
-              label: '',
+              label: 'Task',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.person),
-              label: '',
+              label: 'Akun',
             ),
           ],
           currentIndex: _index,
-          selectedItemColor: const Color(0xffFF4328),
+          selectedItemColor: Color.fromARGB(255, 241, 120, 6),
           unselectedItemColor: Colors.grey,
           showUnselectedLabels: true,
           onTap: _changeSelectedNavBar,

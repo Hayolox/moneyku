@@ -75,7 +75,7 @@ class NotesViewModel extends ChangeNotifier {
       }
       incomeDataTransaction = _incomeSecond;
 
-      /// get  status data income
+      /// get  status data expenditure
       List<dynamic> spending = _getStatusTransactionApi[1];
       List<TransactionModel> _spendingSecond = [];
       for (var element in spending) {
@@ -92,6 +92,7 @@ class NotesViewModel extends ChangeNotifier {
 
   addTransaction(TransactionModel paraModel) async {
     try {
+      /// Add data transaction
       await TransactionApi().addTransaction(paraModel);
       titleC.clear();
       priceC.clear();
@@ -103,6 +104,7 @@ class NotesViewModel extends ChangeNotifier {
 
   editTransaction(TransactionModel paramTransaction) async {
     try {
+      /// Edit data transaction
       await TransactionApi().editTransaction(paramTransaction);
       toastInformation('Data Berhasil DiEdit');
     } catch (e) {
@@ -112,7 +114,10 @@ class NotesViewModel extends ChangeNotifier {
 
   deleteTransaction(String paramId, int paramIndex, String paramStatus) async {
     try {
+      ///Delete data transaction
       await TransactionApi().deleteTransaction(int.parse(paramId));
+
+      /// Conditional status transaction for remove data
       if (paramStatus == 'income') {
         incomeDataTransaction.removeAt(paramIndex);
       } else {

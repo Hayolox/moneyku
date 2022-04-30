@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_masked_text2/flutter_masked_text2.dart';
 import 'package:intl/intl.dart';
 import 'package:moneyku/model/transaction_model.dart';
-
 import 'package:moneyku/screen/notes/notes_view_model.dart';
 import 'package:provider/provider.dart';
 import '../../formating/rupiah.dart';
@@ -22,11 +21,16 @@ class _EditNotesScreenState extends State<EditNotesScreen> {
   late TextEditingController titleC, priceC;
   late String date;
   setUp() {
+    String formatPrice = NumberFormat.currency(
+      locale: 'id',
+      symbol: '',
+      decimalDigits: 0,
+    ).format(int.parse(widget.model.price));
     titleC = TextEditingController(
       text: widget.model.title,
     );
     priceC = TextEditingController(
-      text: widget.model.price,
+      text: formatPrice,
     );
     date = widget.model.createdAt;
   }

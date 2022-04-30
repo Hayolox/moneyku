@@ -195,7 +195,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: 30,
                 ),
                 Text(
-                  'History',
+                  'Transaksi',
                   style: primaryTextStyle.copyWith(
                     fontSize: 24,
                   ),
@@ -204,6 +204,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: ListView.builder(
                   itemCount: value.allDataTransaction.length,
                   itemBuilder: (context, index) {
+                    DateTime convertTimesToDate = DateTime.parse(
+                        value.allDataTransaction[index].createdAt);
                     return GestureDetector(
                       onTap: () {
                         AwesomeDialog(
@@ -211,7 +213,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           animType: AnimType.SCALE,
                           dialogType: DialogType.INFO,
                           title: value.allDataTransaction[index].title,
-                          desc: value.allDataTransaction[index].createdAt,
+                          desc: DateFormat('yyy-MM-dd')
+                              .format(convertTimesToDate),
                         ).show();
                       },
                       child: ListTile(
@@ -227,7 +230,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           style: primaryTextStyle.copyWith(fontSize: 18),
                         ),
                         subtitle: Text(
-                          value.allDataTransaction[index].createdAt,
+                          DateFormat('yyy-MM-dd').format(convertTimesToDate),
                           style: subtitleTextStyle.copyWith(fontSize: 11),
                         ),
                         trailing: Text(

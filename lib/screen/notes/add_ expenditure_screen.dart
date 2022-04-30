@@ -47,12 +47,12 @@ class AddExpenditureScreen extends StatelessWidget {
                             prefixIcon: Icon(
                               Icons.title,
                             ),
-                            labelText: 'Pengeluaran',
-                            hintText: 'Isi Pengeluaran',
+                            labelText: 'Pemasukan',
+                            hintText: 'Isi pemasukan',
                           ),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'Pengeluaran Tidak Boleh Kosong';
+                              return 'Pemasukan Tidak Boleh Kosong';
                             }
                             return null;
                           }),
@@ -61,11 +61,11 @@ class AddExpenditureScreen extends StatelessWidget {
                       ),
                       TextFormField(
                           controller: value.priceC,
-                          keyboardType: TextInputType.number,
                           inputFormatters: [
                             FilteringTextInputFormatter.digitsOnly,
                             CurrencyPtBrInputFormatter()
                           ],
+                          keyboardType: TextInputType.number,
                           textInputAction: TextInputAction.done,
                           decoration: const InputDecoration(
                             floatingLabelStyle: TextStyle(color: Colors.green),
@@ -133,13 +133,15 @@ class AddExpenditureScreen extends StatelessWidget {
                         onPressed: () {
                           var convertToInteger =
                               MaskedTextController(text: '', mask: '000000000');
-                          convertToInteger.updateText(value.priceC.text);
 
+                          convertToInteger.updateText(value.priceC.text);
                           String second = DateFormat('hh:mm:ss')
                               .format(DateTime.now())
                               .toString();
+                          DateTime valueDate =
+                              value.dueDate.add(const Duration(days: 1));
                           String date =
-                              '${value.dueDate.year}-${value.dueDate.month}-${value.dueDate.day} ' +
+                              '${valueDate.year}-${valueDate.month}-${valueDate.day} ' +
                                   second;
 
                           if (_formKey.currentState!.validate()) {
