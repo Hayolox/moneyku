@@ -34,7 +34,7 @@ class TaskViewModel extends ChangeNotifier {
   editTask(TaskModel paramTask) async {
     try {
       await TaskApi().editTask(paramTask);
-      toastInformation('Data Berhasil Ditambahkan');
+      toastInformation('Data Berhasil DiEdit');
     } catch (e) {
       toastAlert('Gagal Edit Data');
     }
