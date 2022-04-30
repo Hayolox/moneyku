@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_masked_text2/flutter_masked_text2.dart';
 import 'package:intl/intl.dart';
 import 'package:moneyku/screen/notes/notes_view_model.dart';
 import 'package:provider/provider.dart';
+import '../../formating/rupiah.dart';
 
 class AddIncomeScreen extends StatelessWidget {
   AddIncomeScreen({Key? key}) : super(key: key);
@@ -58,6 +60,10 @@ class AddIncomeScreen extends StatelessWidget {
                       ),
                       TextFormField(
                           controller: value.priceC,
+                          inputFormatters: [
+                            FilteringTextInputFormatter.digitsOnly,
+                            CurrencyPtBrInputFormatter()
+                          ],
                           keyboardType: TextInputType.number,
                           textInputAction: TextInputAction.done,
                           decoration: const InputDecoration(

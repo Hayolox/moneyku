@@ -1,10 +1,8 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:moneyku/model/api/transaction_api.dart';
 import 'package:moneyku/model/transaction_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutter_masked_text2/flutter_masked_text2.dart';
 import '../../constant/state.dart';
 import '../../future_pub_dev/toast.dart';
 import '../../model/user_model.dart';
@@ -14,18 +12,14 @@ class NotesViewModel extends ChangeNotifier {
   final currenDate = DateTime.now();
 
   TextEditingController titleC = TextEditingController();
-  var priceC = MaskedTextController(
-    mask: '000.000.000',
-  );
+  TextEditingController priceC = TextEditingController();
 
   List<TransactionModel> allDataTransaction = [];
   List<TransactionModel> incomeDataTransaction = [];
   List<TransactionModel> spendingDataTransaction = [];
-  late String income, spending, name;
+  late String sumIncome, sumSpending, name;
   late int total;
   StatusState state = StatusState.loding;
-
-  get convertToTimesTamp => null;
 
   changeStatusState(StatusState s) {
     state = s;
@@ -54,25 +48,9 @@ class NotesViewModel extends ChangeNotifier {
       allDataTransaction = _allDataTransactionSecond;
 
       // get status money
-
-      if (_getTransactionApi['sumIncome'] == 0 &&
-          _getTransactionApi['sumSpending'] == 0) {
-        income = '0';
-        spending = '0';
-        total = 0;
-      } else if (_getTransactionApi['sumIncome'] == 0) {
-        income = '0';
-        spending = _getTransactionApi['sumSpending'];
-        total = _getTransactionApi['total'];
-      } else if (_getTransactionApi['sumSpending'] == 0) {
-        spending = '0';
-        income = _getTransactionApi['sumIncome'];
-        total = _getTransactionApi['total'];
-      } else {
-        income = _getTransactionApi['sumIncome'];
-        spending = _getTransactionApi['sumSpending'];
-        total = _getTransactionApi['total'];
-      }
+      sumIncome = _getTransactionApi['sumIncome'].toString();
+      sumSpending = _getTransactionApi['sumSpending'].toString();
+      total = _getTransactionApi['total'];
 
       changeStatusState(StatusState.none);
       notifyListeners();

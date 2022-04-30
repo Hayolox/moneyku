@@ -138,7 +138,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     locale: 'id',
                                     symbol: 'Rp ',
                                     decimalDigits: 0)
-                                .format(int.parse(value.income)),
+                                .format(int.parse(value.sumIncome)),
                             style: primaryTextStyle.copyWith(
                               fontSize: 14,
                               color: const Color(0xff3CAE5C),
@@ -180,7 +180,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     locale: 'id',
                                     symbol: 'Rp ',
                                     decimalDigits: 0)
-                                .format(int.parse(value.spending)),
+                                .format(int.parse(value.sumSpending)),
                             style: primaryTextStyle.copyWith(
                               fontSize: 14,
                               color: const Color(0xffFF4328),

@@ -8,7 +8,6 @@ import 'package:moneyku/screen/notes/notes_view_model.dart';
 import 'package:moneyku/theme.dart';
 import 'package:provider/provider.dart';
 import 'package:transition/transition.dart';
-
 import '../../constant/state.dart';
 import '../loading_screen.dart';
 
