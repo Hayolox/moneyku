@@ -1,20 +1,54 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_masked_text2/flutter_masked_text2.dart';
 import 'package:intl/intl.dart';
-import 'package:moneyku/screen/notes/formater_screen.dart';
+import 'package:moneyku/model/transaction_model.dart';
+
 import 'package:moneyku/screen/notes/notes_view_model.dart';
 import 'package:provider/provider.dart';
+import '../../formating/rupiah.dart';
 
-class EditNotesScreen extends StatelessWidget {
-  EditNotesScreen({Key? key}) : super(key: key);
+class EditNotesScreen extends StatefulWidget {
+  const EditNotesScreen({Key? key, required this.model}) : super(key: key);
+  final TransactionModel model;
+
+  @override
+  State<EditNotesScreen> createState() => _EditNotesScreenState();
+}
+
+class _EditNotesScreenState extends State<EditNotesScreen> {
   final _formKey = GlobalKey<FormState>();
+
+  late TextEditingController titleC, priceC;
+  late String date;
+  setUp() {
+    titleC = TextEditingController(
+      text: widget.model.title,
+    );
+    priceC = TextEditingController(
+      text: widget.model.price,
+    );
+    date = widget.model.createdAt;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    setUp();
+  }
 
   @override
   Widget build(BuildContext context) {
+    final viewModel = Provider.of<NotesViewModel>(context);
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Edit Notes'),
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () async => Navigator.of(context)
+                .pop(await viewModel.getStatusTransaction()),
+          ),
+          title: const Text('Edit Data'),
           centerTitle: true,
         ),
         body: Container(
@@ -26,6 +60,7 @@ class EditNotesScreen extends StatelessWidget {
                   return Column(
                     children: [
                       TextFormField(
+                          controller: titleC,
                           keyboardType: TextInputType.emailAddress,
                           textInputAction: TextInputAction.next,
                           decoration: const InputDecoration(
@@ -38,12 +73,11 @@ class EditNotesScreen extends StatelessWidget {
                             prefixIcon: Icon(
                               Icons.title,
                             ),
-                            labelText: 'Judul Notes',
-                            hintText: 'Edit Judul Notes',
+                            labelText: 'Pemasukan',
                           ),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'Notes Tidak Boleh Kosong';
+                              return 'Pemasukan Tidak Boleh Kosong';
                             }
                             return null;
                           }),
@@ -51,12 +85,13 @@ class EditNotesScreen extends StatelessWidget {
                         height: 10,
                       ),
                       TextFormField(
-                          keyboardType: TextInputType.number,
-                          textInputAction: TextInputAction.next,
+                          controller: priceC,
                           inputFormatters: [
                             FilteringTextInputFormatter.digitsOnly,
                             CurrencyPtBrInputFormatter()
                           ],
+                          keyboardType: TextInputType.number,
+                          textInputAction: TextInputAction.done,
                           decoration: const InputDecoration(
                             floatingLabelStyle: TextStyle(color: Colors.green),
                             border: OutlineInputBorder(
@@ -67,12 +102,12 @@ class EditNotesScreen extends StatelessWidget {
                             prefixIcon: Icon(
                               Icons.arrow_upward,
                             ),
-                            labelText: 'Harga Notes',
-                            hintText: 'Edit Harga Notes',
+                            labelText: 'Jumlah',
+                            hintText: 'Isi jumlah pemasukan',
                           ),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'Harga Task Tidak Boleh Kosong';
+                              return 'Jumlah Tidak Boleh Kosong';
                             }
                             return null;
                           }),
@@ -81,7 +116,15 @@ class EditNotesScreen extends StatelessWidget {
                       ),
                       GestureDetector(
                         onTap: () async {
-                          value.showDate(context);
+                          final selectDate = await showDatePicker(
+                            context: context,
+                            initialDate: value.currenDate,
+                            firstDate: DateTime(value.currenDate.year),
+                            lastDate: DateTime(value.currenDate.year + 1),
+                          );
+                          setState(() {
+                            date = selectDate.toString();
+                          });
                         },
                         child: Container(
                           padding: const EdgeInsets.symmetric(
@@ -109,7 +152,8 @@ class EditNotesScreen extends StatelessWidget {
                                 width: 10,
                               ),
                               Text(
-                                DateFormat('dd-MM-yyy').format(value.dueDate),
+                                DateFormat('yyy-MM-dd')
+                                    .format(DateTime.parse(date)),
                                 style: const TextStyle(
                                   color: Colors.grey,
                                 ),
@@ -121,8 +165,21 @@ class EditNotesScreen extends StatelessWidget {
                       Center(
                           child: ElevatedButton(
                         onPressed: () {
+                          var convertToInteger =
+                              MaskedTextController(text: '', mask: '000000000');
+
+                          convertToInteger.updateText(value.priceC.text);
+                          String second = DateFormat('hh:mm:ss')
+                              .format(DateTime.now())
+                              .toString();
+                          String date =
+                              '${value.dueDate.year}-${value.dueDate.month}-${value.dueDate.day} ' +
+                                  second;
+
                           if (_formKey.currentState!.validate()) {
                             _formKey.currentState!.save();
+                            // value.addTransactionIncome(value.titleC.text,
+                            //     int.parse(convertToInteger.text), date);
                           }
                         },
                         child: const Text('Submit'),

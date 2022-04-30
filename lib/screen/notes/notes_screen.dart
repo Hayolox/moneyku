@@ -1,6 +1,7 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:moneyku/model/transaction_model.dart';
 import 'package:moneyku/screen/notes/add_%20expenditure_screen.dart';
 import 'package:moneyku/screen/notes/add_income_screen.dart';
 import 'package:moneyku/screen/notes/edit_task_screen.dart';
@@ -42,6 +43,8 @@ class _NoteScreenState extends State<NoteScreen> {
                   child: ListView.builder(
                     itemCount: value.incomeDataTransaction.length,
                     itemBuilder: (context, index) {
+                      DateTime convertTimesToDate = DateTime.parse(
+                          value.incomeDataTransaction[index].createdAt);
                       return Card(
                         shadowColor: Colors.black,
                         child: ListTile(
@@ -65,7 +68,22 @@ class _NoteScreenState extends State<NoteScreen> {
                             Navigator.push(
                               context,
                               Transition(
-                                  child: EditNotesScreen(),
+                                  child: EditNotesScreen(
+                                      model: TransactionModel(
+                                          id: value
+                                              .incomeDataTransaction[index].id,
+                                          title: value
+                                              .incomeDataTransaction[index]
+                                              .title,
+                                          price: value
+                                              .incomeDataTransaction[index]
+                                              .price,
+                                          status: value
+                                              .incomeDataTransaction[index]
+                                              .status,
+                                          createdAt: value
+                                              .incomeDataTransaction[index]
+                                              .createdAt)),
                                   transitionEffect:
                                       TransitionEffect.RIGHT_TO_LEFT),
                             );
@@ -75,7 +93,7 @@ class _NoteScreenState extends State<NoteScreen> {
                             style: primaryTextStyle.copyWith(),
                           ),
                           subtitle: Text(
-                            value.incomeDataTransaction[index].createdAt,
+                            DateFormat('yyy-MM-dd').format(convertTimesToDate),
                           ),
                           trailing: Text(
                             NumberFormat.currency(
@@ -128,6 +146,8 @@ class _NoteScreenState extends State<NoteScreen> {
                   child: ListView.builder(
                     itemCount: value.spendingDataTransaction.length,
                     itemBuilder: (context, index) {
+                      DateTime convertTimesToDate = DateTime.parse(
+                          value.incomeDataTransaction[index].createdAt);
                       return Card(
                         shadowColor: Colors.black,
                         child: ListTile(
@@ -152,7 +172,22 @@ class _NoteScreenState extends State<NoteScreen> {
                             Navigator.push(
                               context,
                               Transition(
-                                  child: EditNotesScreen(),
+                                  child: EditNotesScreen(
+                                      model: TransactionModel(
+                                          id: value
+                                              .incomeDataTransaction[index].id,
+                                          title: value
+                                              .incomeDataTransaction[index]
+                                              .title,
+                                          price: value
+                                              .incomeDataTransaction[index]
+                                              .price,
+                                          status: value
+                                              .incomeDataTransaction[index]
+                                              .status,
+                                          createdAt: value
+                                              .incomeDataTransaction[index]
+                                              .createdAt)),
                                   transitionEffect:
                                       TransitionEffect.RIGHT_TO_LEFT),
                             );
@@ -162,7 +197,7 @@ class _NoteScreenState extends State<NoteScreen> {
                             style: primaryTextStyle.copyWith(),
                           ),
                           subtitle: Text(
-                            value.spendingDataTransaction[index].createdAt,
+                            DateFormat('yyy-MM-dd').format(convertTimesToDate),
                           ),
                           trailing: Text(
                             NumberFormat.currency(

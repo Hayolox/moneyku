@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_masked_text2/flutter_masked_text2.dart';
 import 'package:intl/intl.dart';
+import 'package:moneyku/model/transaction_model.dart';
 import 'package:moneyku/screen/notes/notes_view_model.dart';
 import 'package:provider/provider.dart';
 import '../../formating/rupiah.dart';
@@ -143,8 +144,11 @@ class AddIncomeScreen extends StatelessWidget {
 
                           if (_formKey.currentState!.validate()) {
                             _formKey.currentState!.save();
-                            value.addTransactionIncome(value.titleC.text,
-                                int.parse(convertToInteger.text), date);
+                            value.addTransaction(TransactionModel(
+                                title: value.titleC.text,
+                                price: convertToInteger.text,
+                                status: 'income',
+                                createdAt: date));
                           }
                         },
                         child: const Text('Submit'),

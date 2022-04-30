@@ -90,30 +90,9 @@ class NotesViewModel extends ChangeNotifier {
     }
   }
 
-  addTransactionIncome(
-    String paramTitle,
-    int paramPrice,
-    String paramDate,
-  ) async {
+  addTransaction(TransactionModel paraModel) async {
     try {
-      await TransactionApi()
-          .addTransactionIncome(paramTitle, paramPrice, paramDate);
-      titleC.clear();
-      priceC.clear();
-      toastInformation('Data Berhasil Ditambahkan');
-    } catch (e) {
-      toastAlert('Gagal Menambahkan Data');
-    }
-  }
-
-  addTransactionExpenditure(
-    String paramTitle,
-    int paramPrice,
-    String paramDate,
-  ) async {
-    try {
-      await TransactionApi()
-          .addTransactionExpenditure(paramTitle, paramPrice, paramDate);
+      await TransactionApi().addTransaction(paraModel);
       titleC.clear();
       priceC.clear();
       toastInformation('Data Berhasil Ditambahkan');

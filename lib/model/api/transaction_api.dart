@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:moneyku/model/transaction_model.dart';
 
 class TransactionApi {
   final _baseUrl = 'https://api.hizbullahhaidar.xyz/api/Transaction';
@@ -24,35 +25,12 @@ class TransactionApi {
     }
   }
 
-  Future addTransactionIncome(
-    String title,
-    int price,
-    String date,
-  ) async {
+  Future addTransaction(TransactionModel model) async {
     final _response = await _dio.post(_baseUrl, data: {
-      "title": title,
-      "price": price,
-      "status": "income",
-      "created_at": date
-    });
-
-    if (_response.statusCode == 200) {
-      return _response.data;
-    } else {
-      throw Exception('Failed to get data');
-    }
-  }
-
-  Future addTransactionExpenditure(
-    String title,
-    int price,
-    String date,
-  ) async {
-    final _response = await _dio.post(_baseUrl, data: {
-      "title": title,
-      "price": price,
-      "status": "spending",
-      "created_at": date
+      "title": model.title,
+      "price": model.price,
+      "status": model.status,
+      "created_at": model.createdAt
     });
 
     if (_response.statusCode == 200) {
