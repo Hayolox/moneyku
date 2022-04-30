@@ -1,10 +1,9 @@
 import 'dart:async';
-import 'dart:convert';
 import 'package:delayed_display/delayed_display.dart';
 import 'package:flutter/material.dart';
 import 'package:moneyku/theme.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
+import '../future/storage_future.dart';
 import '../model/user_model.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -23,14 +22,10 @@ class _SplashScreenState extends State<SplashScreen> {
     Timer(
       const Duration(seconds: 2),
       () async {
-        final prefs = await SharedPreferences.getInstance();
-
-        final String? _token = prefs.getString('token');
-
+        List _getDataStorage = await getStorage();
+        String? _token = _getDataStorage[0];
         if (_token != null && _token.isNotEmpty) {
-          Map<String, dynamic> decodeUser =
-              json.decode(prefs.getString('user') as String);
-          UserModel _user = UserModel.fromJson(decodeUser);
+          UserModel _user = _getDataStorage[1];
           if (_user.roles == 'admin') {
             Navigator.pushReplacementNamed(context, '/home');
           } else {

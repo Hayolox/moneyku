@@ -4,7 +4,7 @@ import 'package:moneyku/model/api/transaction_api.dart';
 import 'package:moneyku/model/transaction_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../constant/state.dart';
-import '../../future_pub_dev/toast.dart';
+import '../../future/toast_future.dart';
 import '../../model/user_model.dart';
 
 class NotesViewModel extends ChangeNotifier {

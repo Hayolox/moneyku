@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:moneyku/model/api/task_api.dart';
 import 'package:moneyku/model/task_model.dart';
 import '../../constant/state.dart';
-import '../../future_pub_dev/toast.dart';
+import '../../future/toast_future.dart';
 
 class TaskViewModel extends ChangeNotifier {
   DateTime dueDate = DateTime.now();

@@ -52,7 +52,7 @@ class _MainScreenState extends State<MainScreen> {
             ),
           ],
           currentIndex: _index,
-          selectedItemColor: Color.fromARGB(255, 241, 120, 6),
+          selectedItemColor: const Color.fromARGB(255, 241, 120, 6),
           unselectedItemColor: Colors.grey,
           showUnselectedLabels: true,
           onTap: _changeSelectedNavBar,

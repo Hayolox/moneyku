@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_masked_text2/flutter_masked_text2.dart';
 import 'package:intl/intl.dart';
-import 'package:moneyku/component/storage.dart';
 import 'package:moneyku/model/task_model.dart';
 import 'package:moneyku/model/user_model.dart';
 import 'package:moneyku/screen/task/task_view_model.dart';
 import 'package:provider/provider.dart';
 import '../../formating/rupiah.dart';
+import '../../future/storage_future.dart';
 
 class EditTaskScreen extends StatefulWidget {
   const EditTaskScreen({Key? key, required this.model}) : super(key: key);
