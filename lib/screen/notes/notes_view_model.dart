@@ -101,6 +101,15 @@ class NotesViewModel extends ChangeNotifier {
     }
   }
 
+  editTransaction(TransactionModel paramTransaction) async {
+    try {
+      await TransactionApi().editTransaction(paramTransaction);
+      toastInformation('Data Berhasil DiEdit');
+    } catch (e) {
+      toastAlert('Gagal Edit Data');
+    }
+  }
+
   deleteTransaction(String paramId, int paramIndex, String paramStatus) async {
     try {
       await TransactionApi().deleteTransaction(int.parse(paramId));

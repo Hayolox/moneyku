@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:moneyku/model/transaction_model.dart';
 import 'package:moneyku/screen/notes/add_%20expenditure_screen.dart';
 import 'package:moneyku/screen/notes/add_income_screen.dart';
-import 'package:moneyku/screen/notes/edit_task_screen.dart';
+import 'package:moneyku/screen/notes/edit_notes_screen.dart';
 import 'package:moneyku/screen/notes/notes_view_model.dart';
 import 'package:moneyku/theme.dart';
 import 'package:provider/provider.dart';
@@ -97,11 +97,11 @@ class _NoteScreenState extends State<NoteScreen> {
                           ),
                           trailing: Text(
                             NumberFormat.currency(
-                                    locale: 'id',
-                                    symbol: 'Rp ',
-                                    decimalDigits: 0)
-                                .format(int.parse(
-                                    value.incomeDataTransaction[index].price)),
+                              locale: 'id',
+                              symbol: 'Rp ',
+                              decimalDigits: 0,
+                            ).format(int.parse(
+                                value.incomeDataTransaction[index].price)),
                             style: primaryTextStyle.copyWith(
                               color: Colors.green,
                             ),
@@ -147,7 +147,7 @@ class _NoteScreenState extends State<NoteScreen> {
                     itemCount: value.spendingDataTransaction.length,
                     itemBuilder: (context, index) {
                       DateTime convertTimesToDate = DateTime.parse(
-                          value.incomeDataTransaction[index].createdAt);
+                          value.spendingDataTransaction[index].createdAt);
                       return Card(
                         shadowColor: Colors.black,
                         child: ListTile(
@@ -175,18 +175,19 @@ class _NoteScreenState extends State<NoteScreen> {
                                   child: EditNotesScreen(
                                       model: TransactionModel(
                                           id: value
-                                              .incomeDataTransaction[index].id,
+                                              .spendingDataTransaction[index]
+                                              .id,
                                           title: value
-                                              .incomeDataTransaction[index]
+                                              .spendingDataTransaction[index]
                                               .title,
                                           price: value
-                                              .incomeDataTransaction[index]
+                                              .spendingDataTransaction[index]
                                               .price,
                                           status: value
-                                              .incomeDataTransaction[index]
+                                              .spendingDataTransaction[index]
                                               .status,
                                           createdAt: value
-                                              .incomeDataTransaction[index]
+                                              .spendingDataTransaction[index]
                                               .createdAt)),
                                   transitionEffect:
                                       TransitionEffect.RIGHT_TO_LEFT),

@@ -138,8 +138,10 @@ class AddIncomeScreen extends StatelessWidget {
                           String second = DateFormat('hh:mm:ss')
                               .format(DateTime.now())
                               .toString();
+                          DateTime valueDate =
+                              value.dueDate.add(const Duration(days: 1));
                           String date =
-                              '${value.dueDate.year}-${value.dueDate.month}-${value.dueDate.day} ' +
+                              '${valueDate.year}-${valueDate.month}-${valueDate.day} ' +
                                   second;
 
                           if (_formKey.currentState!.validate()) {

@@ -40,6 +40,24 @@ class TransactionApi {
     }
   }
 
+  Future editTransaction(TransactionModel transaction) async {
+    final _response = await _dio.put(
+      '$_baseUrl/' + transaction.id.toString(),
+      data: {
+        "title": transaction.title,
+        "price": transaction.price,
+        "status": transaction.status,
+        "created_at": transaction.createdAt
+      },
+    );
+
+    if (_response.statusCode == 200) {
+      return _response;
+    } else {
+      throw Exception('Failed  edit data');
+    }
+  }
+
   Future deleteTransaction(int id) async {
     final _response = await _dio.delete('$_baseUrl/' + id.toString());
     return _response.data;

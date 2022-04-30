@@ -165,21 +165,23 @@ class _EditNotesScreenState extends State<EditNotesScreen> {
                       Center(
                           child: ElevatedButton(
                         onPressed: () {
+                          DateTime.parse(date).add(const Duration(days: 1));
+
                           var convertToInteger =
                               MaskedTextController(text: '', mask: '000000000');
+                          convertToInteger.updateText(priceC.text);
 
-                          convertToInteger.updateText(value.priceC.text);
-                          String second = DateFormat('hh:mm:ss')
-                              .format(DateTime.now())
-                              .toString();
-                          String date =
-                              '${value.dueDate.year}-${value.dueDate.month}-${value.dueDate.day} ' +
-                                  second;
+                          DateTime valueDate =
+                              DateTime.parse(date).add(const Duration(days: 1));
 
                           if (_formKey.currentState!.validate()) {
                             _formKey.currentState!.save();
-                            // value.addTransactionIncome(value.titleC.text,
-                            //     int.parse(convertToInteger.text), date);
+                            value.editTransaction(TransactionModel(
+                                id: widget.model.id,
+                                title: titleC.text,
+                                price: convertToInteger.text,
+                                status: widget.model.status,
+                                createdAt: valueDate.toString()));
                           }
                         },
                         child: const Text('Submit'),
