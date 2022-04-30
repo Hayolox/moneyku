@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:delayed_display/delayed_display.dart';
 import 'package:flutter/material.dart';
 import 'package:moneyku/theme.dart';
-
 import '../future/storage_future.dart';
 import '../model/user_model.dart';
 
@@ -52,4 +51,6 @@ class _SplashScreenState extends State<SplashScreen> {
       ),
     );
   }
+
+  getStorage() {}
 }
