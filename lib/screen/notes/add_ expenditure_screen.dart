@@ -6,6 +6,8 @@ import 'package:moneyku/model/transaction_model.dart';
 import 'package:moneyku/screen/notes/notes_view_model.dart';
 import 'package:provider/provider.dart';
 import '../../component/rupiah.dart';
+import '../../future/storage_future.dart';
+import '../../model/user_model.dart';
 
 class AddExpenditureScreen extends StatelessWidget {
   AddExpenditureScreen({Key? key}) : super(key: key);
@@ -130,7 +132,7 @@ class AddExpenditureScreen extends StatelessWidget {
                       ),
                       Center(
                           child: ElevatedButton(
-                        onPressed: () {
+                        onPressed: () async {
                           var convertToInteger =
                               MaskedTextController(text: '', mask: '000000000');
 
@@ -144,13 +146,19 @@ class AddExpenditureScreen extends StatelessWidget {
                               '${valueDate.year}-${valueDate.month}-${valueDate.day} ' +
                                   second;
 
+                          List _getDataStorage = await getStorage();
+                          UserModel user = _getDataStorage[1];
+
                           if (_formKey.currentState!.validate()) {
                             _formKey.currentState!.save();
-                            value.addTransaction(TransactionModel(
-                                title: value.titleC.text,
-                                price: convertToInteger.text,
-                                status: 'spending',
-                                createdAt: date));
+                            value.addTransaction(
+                              TransactionModel(
+                                  title: value.titleC.text,
+                                  price: convertToInteger.text,
+                                  status: 'spending',
+                                  createdAt: date),
+                              user.roles,
+                            );
                           }
                         },
                         child: const Text('Submit'),

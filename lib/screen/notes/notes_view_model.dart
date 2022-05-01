@@ -90,14 +90,16 @@ class NotesViewModel extends ChangeNotifier {
     }
   }
 
-  addTransaction(TransactionModel paraModel) async {
+  addTransaction(TransactionModel paraModel, String paramRole) async {
     try {
       /// Add data transaction
       await TransactionApi().addTransaction(paraModel);
       titleC.clear();
       priceC.clear();
       dueDate = DateTime.now();
-      toastInformation('Data Berhasil Ditambahkan');
+      if (paramRole == 'admin') {
+        toastInformation('Data Berhasil Ditambahkan');
+      }
     } catch (e) {
       toastAlert('Gagal Menambahkan Data');
     }
