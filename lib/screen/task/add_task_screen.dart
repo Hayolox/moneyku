@@ -79,8 +79,8 @@ class AddTaskScreen extends StatelessWidget {
                             prefixIcon: Icon(
                               Icons.arrow_upward,
                             ),
-                            labelText: 'Jumlah',
-                            hintText: 'Isi jumlah pemasukan',
+                            labelText: 'Harga',
+                            hintText: 'Isi Harga',
                           ),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
