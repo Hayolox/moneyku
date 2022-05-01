@@ -15,6 +15,21 @@ class TaskApi {
     }
   }
 
+  Future addTask(TaskModel task) async {
+    final _response = await _dio.post(_baseUrl, data: {
+      "user_id": task.userId,
+      "title": task.title,
+      "price": task.price,
+      "deadline": task.deadline.toString(),
+      "status": task.status
+    });
+    if (_response.statusCode == 200) {
+      return _response;
+    } else {
+      throw Exception('Failed to edit data');
+    }
+  }
+
   Future editTask(TaskModel task) async {
     final _response = await _dio.put('$_baseUrl/' + task.id.toString(), data: {
       "user_id": task.userId,

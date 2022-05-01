@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_masked_text2/flutter_masked_text2.dart';
 import 'package:intl/intl.dart';
-import 'package:moneyku/screen/notes/formater_screen.dart';
+import 'package:moneyku/model/task_model.dart';
+import 'package:moneyku/model/transaction_model.dart';
 import 'package:moneyku/screen/notes/notes_view_model.dart';
+import 'package:moneyku/screen/task/task_view_model.dart';
 import 'package:provider/provider.dart';
+import '../../component/rupiah.dart';
+import '../../future/storage_future.dart';
+import '../../model/user_model.dart';
 
 class AddTaskScreen extends StatelessWidget {
   AddTaskScreen({Key? key}) : super(key: key);
@@ -11,9 +17,15 @@ class AddTaskScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final viewModel = Provider.of<TaskViewModel>(context);
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () async =>
+                Navigator.of(context).pop(await viewModel.getAllDataTask()),
+          ),
           title: const Text('Tambah Task'),
           centerTitle: true,
         ),
@@ -21,11 +33,12 @@ class AddTaskScreen extends StatelessWidget {
           padding: const EdgeInsets.only(right: 15, left: 15, top: 30),
           child: Form(
               key: _formKey,
-              child: Consumer<NotesViewModel>(
+              child: Consumer<TaskViewModel>(
                 builder: (context, value, child) {
                   return Column(
                     children: [
                       TextFormField(
+                          controller: value.titleC,
                           keyboardType: TextInputType.emailAddress,
                           textInputAction: TextInputAction.next,
                           decoration: const InputDecoration(
@@ -38,12 +51,12 @@ class AddTaskScreen extends StatelessWidget {
                             prefixIcon: Icon(
                               Icons.title,
                             ),
-                            labelText: 'Judul Task',
-                            hintText: 'Isi Judul Task',
+                            labelText: 'Title Task',
+                            hintText: 'Isi Title Task',
                           ),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'Task Tidak Boleh Kosong';
+                              return 'Title Task Tidak Boleh Kosong';
                             }
                             return null;
                           }),
@@ -51,12 +64,13 @@ class AddTaskScreen extends StatelessWidget {
                         height: 10,
                       ),
                       TextFormField(
-                          keyboardType: TextInputType.number,
-                          textInputAction: TextInputAction.next,
+                          controller: value.priceC,
                           inputFormatters: [
                             FilteringTextInputFormatter.digitsOnly,
                             CurrencyPtBrInputFormatter()
                           ],
+                          keyboardType: TextInputType.number,
+                          textInputAction: TextInputAction.done,
                           decoration: const InputDecoration(
                             floatingLabelStyle: TextStyle(color: Colors.green),
                             border: OutlineInputBorder(
@@ -67,12 +81,12 @@ class AddTaskScreen extends StatelessWidget {
                             prefixIcon: Icon(
                               Icons.arrow_upward,
                             ),
-                            labelText: 'Harga Task',
-                            hintText: 'Isi harga task',
+                            labelText: 'Jumlah',
+                            hintText: 'Isi jumlah pemasukan',
                           ),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'Harga Task Tidak Boleh Kosong';
+                              return 'Jumlah Tidak Boleh Kosong';
                             }
                             return null;
                           }),
@@ -109,7 +123,7 @@ class AddTaskScreen extends StatelessWidget {
                                 width: 10,
                               ),
                               Text(
-                                DateFormat('dd-MM-yyy').format(value.dueDate),
+                                DateFormat('yyy-MM-dd').format(value.dueDate),
                                 style: const TextStyle(
                                   color: Colors.grey,
                                 ),
@@ -120,9 +134,24 @@ class AddTaskScreen extends StatelessWidget {
                       ),
                       Center(
                           child: ElevatedButton(
-                        onPressed: () {
+                        onPressed: () async {
+                          var convertToInteger =
+                              MaskedTextController(text: '', mask: '000000000');
+
+                          convertToInteger.updateText(value.priceC.text);
+
+                          List _getDataStorage = await getStorage();
+                          UserModel user = _getDataStorage[1];
+
                           if (_formKey.currentState!.validate()) {
                             _formKey.currentState!.save();
+                            value.addTask(TaskModel(
+                              title: value.titleC.text,
+                              price: convertToInteger.text,
+                              status: 'process',
+                              deadline: value.dueDate,
+                              userId: user.id.toString(),
+                            ));
                           }
                         },
                         child: const Text('Submit'),

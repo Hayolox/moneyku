@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:moneyku/model/api/task_api.dart';
 import 'package:moneyku/model/task_model.dart';
 import '../../constant/state.dart';
@@ -7,6 +8,10 @@ import '../../future/toast_future.dart';
 class TaskViewModel extends ChangeNotifier {
   DateTime dueDate = DateTime.now();
   final currenDate = DateTime.now();
+
+  TextEditingController titleC = TextEditingController();
+  TextEditingController priceC = TextEditingController();
+
   List<TaskModel> allDataTask = [];
   StatusState state = StatusState.loding;
 
@@ -31,6 +36,19 @@ class TaskViewModel extends ChangeNotifier {
     }
   }
 
+  addTask(TaskModel paramTask) async {
+    try {
+      await TaskApi().addTask(paramTask);
+      titleC.clear();
+      priceC.clear();
+      dueDate = DateTime.now();
+      toastInformation('Data Berhasil DiEdit');
+      notifyListeners();
+    } catch (e) {
+      toastAlert('Gagal Add Data');
+    }
+  }
+
   editTask(TaskModel paramTask) async {
     try {
       await TaskApi().editTask(paramTask);
@@ -48,5 +66,16 @@ class TaskViewModel extends ChangeNotifier {
     } catch (e) {
       toastAlert('Gagal delete Data');
     }
+  }
+
+  Future<void> showDate(BuildContext context) async {
+    final selectDate = await showDatePicker(
+      context: context,
+      initialDate: dueDate,
+      firstDate: DateTime(currenDate.year),
+      lastDate: DateTime(currenDate.year + 1),
+    );
+    dueDate = selectDate!;
+    notifyListeners();
   }
 }
