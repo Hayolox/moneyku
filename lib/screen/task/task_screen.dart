@@ -124,7 +124,7 @@ class _TaskcreenState extends State<Taskcreen> {
                           transitionEffect: TransitionEffect.RIGHT_TO_LEFT),
                     );
                   },
-                  child: const Text('Tambah Taks'),
+                  child: const Text('Tambah Task'),
                 ))
               ],
             ),

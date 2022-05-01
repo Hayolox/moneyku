@@ -127,7 +127,11 @@ class _EditNotesScreenState extends State<EditNotesScreen> {
                             lastDate: DateTime(value.currenDate.year + 1),
                           );
                           setState(() {
-                            date = selectDate.toString();
+                            if (selectDate != null) {
+                              date = selectDate.toString();
+                            } else {
+                              date = date;
+                            }
                           });
                         },
                         child: Container(
