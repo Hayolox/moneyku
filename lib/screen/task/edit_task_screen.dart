@@ -10,8 +10,10 @@ import '../../component/rupiah.dart';
 import '../../future/storage_future.dart';
 
 class EditTaskScreen extends StatefulWidget {
-  const EditTaskScreen({Key? key, required this.model}) : super(key: key);
+  const EditTaskScreen({Key? key, required this.model, required this.index})
+      : super(key: key);
   final TaskModel model;
+  final int index;
 
   @override
   State<EditTaskScreen> createState() => _EditTaskScreenState();
@@ -188,14 +190,17 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
 
                           if (_formKey.currentState!.validate()) {
                             _formKey.currentState!.save();
-                            value.editTask(TaskModel(
-                              id: widget.model.id,
-                              title: titleC.text,
-                              price: convertToInteger.text,
-                              status: widget.model.status,
-                              deadline: valueDate,
-                              userId: user.id.toString(),
-                            ));
+                            value.editTask(
+                                TaskModel(
+                                  id: widget.model.id,
+                                  title: titleC.text,
+                                  price: convertToInteger.text,
+                                  status: widget.model.status,
+                                  deadline: valueDate,
+                                  userId: user.id.toString(),
+                                ),
+                                user.roles,
+                                widget.index);
                           }
                         },
                         child: const Text('Submit'),

@@ -70,14 +70,15 @@ class _TaskcreenState extends State<Taskcreen> {
                           context,
                           Transition(
                               child: EditTaskScreen(
-                                  model: TaskModel(
-                                      id: value.allDataTask[index].id,
-                                      title: value.allDataTask[index].title,
-                                      price: value.allDataTask[index].price,
-                                      status: value.allDataTask[index].status,
-                                      deadline:
-                                          value.allDataTask[index].deadline,
-                                      userId: '')),
+                                model: TaskModel(
+                                    id: value.allDataTask[index].id,
+                                    title: value.allDataTask[index].title,
+                                    price: value.allDataTask[index].price,
+                                    status: value.allDataTask[index].status,
+                                    deadline: value.allDataTask[index].deadline,
+                                    userId: ''),
+                                index: index,
+                              ),
                               transitionEffect: TransitionEffect.RIGHT_TO_LEFT),
                         );
                       },

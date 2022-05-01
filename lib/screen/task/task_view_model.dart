@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:moneyku/model/api/task_api.dart';
 import 'package:moneyku/model/task_model.dart';
+import 'package:moneyku/model/transaction_model.dart';
+import 'package:moneyku/screen/notes/notes_view_model.dart';
 import '../../constant/state.dart';
 import '../../future/toast_future.dart';
 
@@ -48,10 +50,23 @@ class TaskViewModel extends ChangeNotifier {
     }
   }
 
-  editTask(TaskModel paramTask) async {
+  editTask(TaskModel paramTask, String paramRole, int paramIndex) async {
     try {
       await TaskApi().editTask(paramTask);
-      toastInformation('Data Berhasil Diedit');
+
+      /// conditional role employee
+      if (paramRole == 'employee') {
+        NotesViewModel().addTransaction(TransactionModel(
+            title: paramTask.title,
+            price: paramTask.price,
+            status: 'income',
+            createdAt: DateTime.now().toString()));
+        allDataTask.removeAt(paramIndex);
+        notifyListeners();
+        toastInformation('Task Selesai');
+      } else {
+        toastInformation('Data Berhasil Diedit');
+      }
     } catch (e) {
       toastAlert('Gagal Edit Data');
     }

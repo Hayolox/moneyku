@@ -36,7 +36,7 @@ class TaskApi {
       "title": task.title,
       "price": task.price,
       "deadline": task.deadline.toString(),
-      "status": "process"
+      "status": task.status
     });
 
     if (_response.statusCode == 200) {
