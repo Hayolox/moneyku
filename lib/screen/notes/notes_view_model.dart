@@ -107,7 +107,7 @@ class NotesViewModel extends ChangeNotifier {
     try {
       /// Edit data transaction
       await TransactionApi().editTransaction(paramTransaction);
-      toastInformation('Data Berhasil DiEdit');
+      toastInformation('Data Berhasil Diedit');
     } catch (e) {
       toastAlert('Gagal Edit Data');
     }
@@ -124,7 +124,7 @@ class NotesViewModel extends ChangeNotifier {
       } else {
         spendingDataTransaction.removeAt(paramIndex);
       }
-      toastInformation('Berhasil hapus Data');
+      toastInformation('Data Berhasil Dihapus');
     } catch (e) {
       toastAlert('Gagal hapus Data');
     }

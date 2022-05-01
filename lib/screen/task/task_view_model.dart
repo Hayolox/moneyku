@@ -41,7 +41,7 @@ class TaskViewModel extends ChangeNotifier {
       titleC.clear();
       priceC.clear();
       dueDate = DateTime.now();
-      toastInformation('Data Berhasil DiEdit');
+      toastInformation('Data Berhasil Ditambahkan');
       notifyListeners();
     } catch (e) {
       toastAlert('Gagal Add Data');
@@ -51,7 +51,7 @@ class TaskViewModel extends ChangeNotifier {
   editTask(TaskModel paramTask) async {
     try {
       await TaskApi().editTask(paramTask);
-      toastInformation('Data Berhasil DiEdit');
+      toastInformation('Data Berhasil Diedit');
     } catch (e) {
       toastAlert('Gagal Edit Data');
     }
@@ -62,6 +62,7 @@ class TaskViewModel extends ChangeNotifier {
       await TaskApi().deleteTask(paramId);
       allDataTask.removeAt(paramIndex);
       notifyListeners();
+      toastInformation('Data Berhasil Dihapus');
     } catch (e) {
       toastAlert('Gagal delete Data');
     }
