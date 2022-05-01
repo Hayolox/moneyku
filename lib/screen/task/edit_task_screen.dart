@@ -6,7 +6,7 @@ import 'package:moneyku/model/task_model.dart';
 import 'package:moneyku/model/user_model.dart';
 import 'package:moneyku/screen/task/task_view_model.dart';
 import 'package:provider/provider.dart';
-import '../../formating/rupiah.dart';
+import '../../component/rupiah.dart';
 import '../../future/storage_future.dart';
 
 class EditTaskScreen extends StatefulWidget {

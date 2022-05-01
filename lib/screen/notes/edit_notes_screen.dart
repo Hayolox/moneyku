@@ -5,7 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:moneyku/model/transaction_model.dart';
 import 'package:moneyku/screen/notes/notes_view_model.dart';
 import 'package:provider/provider.dart';
-import '../../formating/rupiah.dart';
+import '../../component/rupiah.dart';
 
 class EditNotesScreen extends StatefulWidget {
   const EditNotesScreen({Key? key, required this.model}) : super(key: key);

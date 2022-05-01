@@ -10,7 +10,7 @@ import 'package:moneyku/theme.dart';
 import 'package:provider/provider.dart';
 import 'package:transition/transition.dart';
 import '../../constant/state.dart';
-import '../loading_screen.dart';
+import '../../component/loading_screen.dart';
 
 class NoteScreen extends StatefulWidget {
   const NoteScreen({Key? key}) : super(key: key);

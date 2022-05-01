@@ -10,7 +10,7 @@ import 'package:provider/provider.dart';
 import 'package:transition/transition.dart';
 
 import '../../theme.dart';
-import '../loading_screen.dart';
+import '../../component/loading_screen.dart';
 
 class Taskcreen extends StatefulWidget {
   const Taskcreen({Key? key}) : super(key: key);

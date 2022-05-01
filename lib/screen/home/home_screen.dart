@@ -2,7 +2,7 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:moneyku/constant/state.dart';
-import 'package:moneyku/screen/loading_screen.dart';
+import 'package:moneyku/component/loading_screen.dart';
 import 'package:moneyku/screen/notes/notes_view_model.dart';
 import 'package:moneyku/theme.dart';
 import 'package:provider/provider.dart';
