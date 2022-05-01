@@ -96,6 +96,7 @@ class NotesViewModel extends ChangeNotifier {
       await TransactionApi().addTransaction(paraModel);
       titleC.clear();
       priceC.clear();
+      dueDate = DateTime.now();
       toastInformation('Data Berhasil Ditambahkan');
     } catch (e) {
       toastAlert('Gagal Menambahkan Data');

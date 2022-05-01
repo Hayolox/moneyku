@@ -3,8 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_masked_text2/flutter_masked_text2.dart';
 import 'package:intl/intl.dart';
 import 'package:moneyku/model/task_model.dart';
-import 'package:moneyku/model/transaction_model.dart';
-import 'package:moneyku/screen/notes/notes_view_model.dart';
 import 'package:moneyku/screen/task/task_view_model.dart';
 import 'package:provider/provider.dart';
 import '../../component/rupiah.dart';
