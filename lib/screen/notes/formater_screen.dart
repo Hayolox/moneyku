@@ -9,12 +9,12 @@ class CurrencyPtBrInputFormatter extends TextInputFormatter {
       return newValue;
     }
 
-    double value = double.parse(newValue.text);
-    final formatter = NumberFormat("#,##0.00", "pt_BR");
-    String newText = formatter.format(value / 100);
+    double _value = double.parse(newValue.text);
+    final _formatter = NumberFormat("#,##0.00", "pt_BR");
+    String _newText = _formatter.format(_value / 100);
 
     return newValue.copyWith(
-        text: newText,
-        selection: TextSelection.collapsed(offset: newText.length));
+        text: _newText,
+        selection: TextSelection.collapsed(offset: _newText.length));
   }
 }

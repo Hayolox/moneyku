@@ -30,9 +30,9 @@ class NotesViewModel extends ChangeNotifier {
     changeStatusState(StatusState.loding);
     try {
       ///get storage user
-      final prefs = await SharedPreferences.getInstance();
+      final _prefs = await SharedPreferences.getInstance();
       Map<String, dynamic> decodeUser =
-          json.decode(prefs.getString('user') as String);
+          json.decode(_prefs.getString('user') as String);
       UserModel _user = UserModel.fromJson(decodeUser);
       name = _user.name;
 
@@ -42,8 +42,8 @@ class NotesViewModel extends ChangeNotifier {
       /// get all data transaction
       List<dynamic> _allData = _getTransactionApi['alldata'];
       List<TransactionModel> _allDataTransactionSecond = [];
-      for (var element in _allData) {
-        _allDataTransactionSecond.add(TransactionModel.fromJson(element));
+      for (var _element in _allData) {
+        _allDataTransactionSecond.add(TransactionModel.fromJson(_element));
       }
       allDataTransaction = _allDataTransactionSecond;
 
@@ -70,16 +70,16 @@ class NotesViewModel extends ChangeNotifier {
       /// get  status data income
       List<dynamic> _income = _getStatusTransactionApi[0];
       List<TransactionModel> _incomeSecond = [];
-      for (var element in _income) {
-        _incomeSecond.add(TransactionModel.fromJson(element));
+      for (var _element in _income) {
+        _incomeSecond.add(TransactionModel.fromJson(_element));
       }
       incomeDataTransaction = _incomeSecond;
 
       /// get  status data expenditure
       List<dynamic> spending = _getStatusTransactionApi[1];
       List<TransactionModel> _spendingSecond = [];
-      for (var element in spending) {
-        _spendingSecond.add(TransactionModel.fromJson(element));
+      for (var _element in spending) {
+        _spendingSecond.add(TransactionModel.fromJson(_element));
       }
       spendingDataTransaction = _spendingSecond;
       changeStatusState(StatusState.none);
@@ -134,13 +134,13 @@ class NotesViewModel extends ChangeNotifier {
   }
 
   Future<void> showDate(BuildContext context) async {
-    final selectDate = await showDatePicker(
+    final _selectDate = await showDatePicker(
       context: context,
       initialDate: dueDate,
       firstDate: DateTime(currenDate.year),
       lastDate: DateTime(currenDate.year + 1),
     );
-    dueDate = selectDate!;
+    dueDate = _selectDate!;
     notifyListeners();
   }
 }

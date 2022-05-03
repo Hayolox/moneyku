@@ -15,14 +15,14 @@ class AddExpenditureScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = Provider.of<NotesViewModel>(context);
+    final _viewModel = Provider.of<NotesViewModel>(context);
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () async => Navigator.of(context)
-                .pop(await viewModel.getStatusTransaction()),
+                .pop(await _viewModel.getStatusTransaction()),
           ),
           title: const Text('Tambah Pengeluaran'),
           centerTitle: true,
@@ -137,14 +137,15 @@ class AddExpenditureScreen extends StatelessWidget {
                               MaskedTextController(text: '', mask: '000000000');
 
                           convertToInteger.updateText(value.priceC.text);
-                          String second = DateFormat('hh:mm:ss')
-                              .format(DateTime.now())
-                              .toString();
-                          DateTime valueDate =
-                              value.dueDate.add(const Duration(days: 1));
-                          String date =
-                              '${valueDate.year}-${valueDate.month}-${valueDate.day} ' +
-                                  second;
+                          // String second = DateFormat('hh:mm:ss')
+                          //     .format(DateTime.now())
+                          //     .toString();
+
+                          // DateTime valueDate =
+                          //     value.dueDate.add(const Duration(days: 1));
+                          // String date =
+                          //     '${value.dueDate.year}-${value.dueDate.month}-${value.dueDate.day} ' +
+                          //         second;
 
                           List _getDataStorage = await getStorage();
                           UserModel user = _getDataStorage[1];
@@ -156,7 +157,7 @@ class AddExpenditureScreen extends StatelessWidget {
                                   title: value.titleC.text,
                                   price: convertToInteger.text,
                                   status: 'spending',
-                                  createdAt: date),
+                                  createdAt: value.dueDate.toString()),
                               user.roles,
                             );
                           }

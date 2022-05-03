@@ -24,8 +24,8 @@ class _NoteScreenState extends State<NoteScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance!.addPostFrameCallback((timeStamp) async {
-      var viewModel = Provider.of<NotesViewModel>(context, listen: false);
-      await viewModel.getStatusTransaction();
+      var _viewModel = Provider.of<NotesViewModel>(context, listen: false);
+      await _viewModel.getStatusTransaction();
     });
   }
 
