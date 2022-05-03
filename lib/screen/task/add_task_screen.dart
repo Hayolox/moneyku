@@ -15,14 +15,14 @@ class AddTaskScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = Provider.of<TaskViewModel>(context);
+    final _viewModel = Provider.of<TaskViewModel>(context);
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () async =>
-                Navigator.of(context).pop(await viewModel.getAllDataTask()),
+                Navigator.of(context).pop(await _viewModel.getAllDataTask()),
           ),
           title: const Text('Tambah Task'),
           centerTitle: true,

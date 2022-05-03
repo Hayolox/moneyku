@@ -24,8 +24,8 @@ class _TaskcreenState extends State<Taskcreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
-      var viewModel = Provider.of<TaskViewModel>(context, listen: false);
-      viewModel.getAllDataTask();
+      var _viewModel = Provider.of<TaskViewModel>(context, listen: false);
+      _viewModel.getAllDataTask();
     });
   }
 

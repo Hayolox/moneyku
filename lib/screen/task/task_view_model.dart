@@ -87,13 +87,13 @@ class TaskViewModel extends ChangeNotifier {
   }
 
   Future<void> showDate(BuildContext context) async {
-    final selectDate = await showDatePicker(
+    final _selectDate = await showDatePicker(
       context: context,
       initialDate: dueDate,
       firstDate: DateTime(currenDate.year),
       lastDate: DateTime(currenDate.year + 1),
     );
-    dueDate = selectDate!;
+    dueDate = _selectDate!;
     notifyListeners();
   }
 }
