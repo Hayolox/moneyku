@@ -32,11 +32,11 @@ class _MainScreenState extends State<MainEmployeeScreen> {
           items: const [
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
-              label: '',
+              label: 'Home',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.person),
-              label: '',
+              label: 'Akun',
             ),
           ],
           currentIndex: _index,
