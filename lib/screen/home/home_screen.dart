@@ -19,8 +19,8 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance!.addPostFrameCallback((timeStamp) async {
-      var viewModel = Provider.of<NotesViewModel>(context, listen: false);
-      await viewModel.getAllDataTransaction();
+      var _viewModel = Provider.of<NotesViewModel>(context, listen: false);
+      await _viewModel.getAllDataTransaction();
     });
   }
 
