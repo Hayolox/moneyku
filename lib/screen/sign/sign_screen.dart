@@ -12,7 +12,7 @@ class SignScreen extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    final isKeyboard = MediaQuery.of(context).viewInsets.bottom != 0;
+    final _isKeyboard = MediaQuery.of(context).viewInsets.bottom != 0;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SafeArea(
@@ -23,7 +23,7 @@ class SignScreen extends StatelessWidget {
                 builder: (context, value, child) {
                   return Column(
                     children: <Widget>[
-                      if (!isKeyboard)
+                      if (!_isKeyboard)
 
                         /// Logo
                         DelayedDisplay(
@@ -36,7 +36,7 @@ class SignScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                      if (isKeyboard)
+                      if (_isKeyboard)
                         const SizedBox(
                           height: 100,
                         ),
