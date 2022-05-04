@@ -137,16 +137,6 @@ class AddIncomeScreen extends StatelessWidget {
                               MaskedTextController(text: '', mask: '000000000');
 
                           convertToInteger.updateText(value.priceC.text);
-                          // String second = DateFormat('hh:mm:ss')
-                          //     .format(DateTime.now())
-                          //     .toString();
-
-                          // DateTime valueDate =
-                          //     value.dueDate.add(const Duration(days: 1));
-
-                          // String date =
-                          //     '${value.dueDate.year}-${value.dueDate.month}-${value.dueDate.day} ' +
-                          //         second;
 
                           List _getDataStorage = await getStorage();
                           UserModel user = _getDataStorage[1];

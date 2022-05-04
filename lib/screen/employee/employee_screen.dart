@@ -6,7 +6,6 @@ import 'package:moneyku/constant/state.dart';
 import 'package:moneyku/screen/task/task_view_model.dart';
 import 'package:moneyku/theme.dart';
 import 'package:provider/provider.dart';
-
 import '../../future/storage_future.dart';
 import '../../model/task_model.dart';
 import '../../model/user_model.dart';

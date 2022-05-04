@@ -25,12 +25,12 @@ class TransactionApi {
     }
   }
 
-  Future addTransaction(TransactionModel model) async {
+  Future addTransaction(TransactionModel transaction) async {
     final _response = await _dio.post(_baseUrl, data: {
-      "title": model.title,
-      "price": model.price,
-      "status": model.status,
-      "created_at": model.createdAt
+      "title": transaction.title,
+      "price": transaction.price,
+      "status": transaction.status,
+      "created_at": transaction.createdAt
     });
 
     if (_response.statusCode == 200) {

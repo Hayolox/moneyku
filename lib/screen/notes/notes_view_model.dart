@@ -90,10 +90,10 @@ class NotesViewModel extends ChangeNotifier {
     }
   }
 
-  addTransaction(TransactionModel paraModel, String paramRole) async {
+  addTransaction(TransactionModel paramTransaction, String paramRole) async {
     try {
       /// Add data transaction
-      await TransactionApi().addTransaction(paraModel);
+      await TransactionApi().addTransaction(paramTransaction);
       titleC.clear();
       priceC.clear();
       dueDate = DateTime.now();

@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:moneyku/model/user_model.dart';
 import 'package:moneyku/screen/person/edit_user_screen.dart';

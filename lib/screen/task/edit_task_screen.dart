@@ -22,21 +22,21 @@ class EditTaskScreen extends StatefulWidget {
 class _EditTaskScreenState extends State<EditTaskScreen> {
   final _formKey = GlobalKey<FormState>();
 
-  late TextEditingController titleC, priceC;
-  late String date;
+  late TextEditingController _titleC, _priceC;
+  late String _date;
   setUp() {
     String formatPrice = NumberFormat.currency(
       locale: 'id',
       symbol: '',
       decimalDigits: 0,
     ).format(int.parse(widget.model.price));
-    titleC = TextEditingController(
+    _titleC = TextEditingController(
       text: widget.model.title,
     );
-    priceC = TextEditingController(
+    _priceC = TextEditingController(
       text: formatPrice,
     );
-    date = widget.model.deadline.toString();
+    _date = widget.model.deadline.toString();
   }
 
   @override
@@ -68,7 +68,7 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                   return Column(
                     children: [
                       TextFormField(
-                          controller: titleC,
+                          controller: _titleC,
                           keyboardType: TextInputType.emailAddress,
                           textInputAction: TextInputAction.next,
                           decoration: const InputDecoration(
@@ -93,7 +93,7 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                         height: 10,
                       ),
                       TextFormField(
-                          controller: priceC,
+                          controller: _priceC,
                           inputFormatters: [
                             FilteringTextInputFormatter.digitsOnly,
                             CurrencyPtBrInputFormatter()
@@ -132,9 +132,9 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                           );
                           setState(() {
                             if (selectDate != null) {
-                              date = selectDate.toString();
+                              _date = selectDate.toString();
                             } else {
-                              date = date;
+                              _date = _date;
                             }
                           });
                         },
@@ -165,7 +165,7 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                               ),
                               Text(
                                 DateFormat('yyy-MM-dd')
-                                    .format(DateTime.parse(date)),
+                                    .format(DateTime.parse(_date)),
                                 style: const TextStyle(
                                   color: Colors.grey,
                                 ),
@@ -177,13 +177,13 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                       Center(
                           child: ElevatedButton(
                         onPressed: () async {
-                          DateTime.parse(date).add(const Duration(days: 1));
+                          DateTime.parse(_date).add(const Duration(days: 1));
 
                           var convertToInteger =
                               MaskedTextController(text: '', mask: '000000000');
-                          convertToInteger.updateText(priceC.text);
+                          convertToInteger.updateText(_priceC.text);
 
-                          DateTime valueDate = DateTime.parse(date);
+                          DateTime valueDate = DateTime.parse(_date);
 
                           List _getDataStorage = await getStorage();
                           UserModel user = _getDataStorage[1];
@@ -193,7 +193,7 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                             value.editTask(
                                 TaskModel(
                                   id: widget.model.id,
-                                  title: titleC.text,
+                                  title: _titleC.text,
                                   price: convertToInteger.text,
                                   status: widget.model.status,
                                   deadline: valueDate,
