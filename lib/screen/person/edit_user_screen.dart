@@ -1,12 +1,36 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:moneyku/screen/notes/formater_screen.dart';
 import 'package:moneyku/screen/person/person_view_model.dart';
 import 'package:provider/provider.dart';
 
-class EditUserScreen extends StatelessWidget {
-  EditUserScreen({Key? key}) : super(key: key);
+import '../../model/user_model.dart';
+
+// ignore: must_be_immutable
+class EditUserScreen extends StatefulWidget {
+  EditUserScreen({Key? key, required this.user}) : super(key: key);
+
+  UserModel user;
+
+  @override
+  State<EditUserScreen> createState() => _EditUserScreenState();
+}
+
+class _EditUserScreenState extends State<EditUserScreen> {
   final _formKey = GlobalKey<FormState>();
+  late TextEditingController _nameC, _emailC;
+
+  _setUp() async {
+    _nameC = TextEditingController(text: widget.user.name);
+    _emailC = TextEditingController(text: widget.user.email);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _setUp();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +49,7 @@ class EditUserScreen extends StatelessWidget {
                   return Column(
                     children: [
                       TextFormField(
+                          controller: _nameC,
                           keyboardType: TextInputType.emailAddress,
                           textInputAction: TextInputAction.next,
                           decoration: const InputDecoration(
@@ -50,12 +75,9 @@ class EditUserScreen extends StatelessWidget {
                         height: 10,
                       ),
                       TextFormField(
+                          controller: _emailC,
                           keyboardType: TextInputType.emailAddress,
                           textInputAction: TextInputAction.next,
-                          inputFormatters: [
-                            FilteringTextInputFormatter.digitsOnly,
-                            CurrencyPtBrInputFormatter()
-                          ],
                           decoration: const InputDecoration(
                             floatingLabelStyle: TextStyle(color: Colors.green),
                             border: OutlineInputBorder(
@@ -66,14 +88,19 @@ class EditUserScreen extends StatelessWidget {
                             prefixIcon: Icon(
                               Icons.email,
                             ),
-                            labelText: 'Email',
-                            hintText: 'Edit Email',
+                            labelText: 'Name',
+                            hintText: 'Edit Name',
                           ),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'Email  Tidak Boleh Kosong';
+                              return 'Email Tidak Boleh Kosong';
                             }
-                            return null;
+                            final bool _isValid = EmailValidator.validate(
+                              value.toString(),
+                            );
+                            return _isValid == false
+                                ? 'Format harus berupa email'
+                                : null;
                           }),
                       const SizedBox(
                         height: 10,
@@ -83,6 +110,12 @@ class EditUserScreen extends StatelessWidget {
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
                             _formKey.currentState!.save();
+                            value.editUser(UserModel(
+                              id: widget.user.id,
+                              name: _nameC.text,
+                              email: _emailC.text,
+                              roles: widget.user.roles,
+                            ));
                           }
                         },
                         child: const Text('Edit'),
