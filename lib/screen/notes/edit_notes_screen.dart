@@ -7,9 +7,12 @@ import 'package:moneyku/screen/notes/notes_view_model.dart';
 import 'package:provider/provider.dart';
 import '../../component/rupiah.dart';
 
+// ignore: must_be_immutable
 class EditNotesScreen extends StatefulWidget {
-  const EditNotesScreen({Key? key, required this.model}) : super(key: key);
+  EditNotesScreen({Key? key, required this.model, required this.status})
+      : super(key: key);
   final TransactionModel model;
+  String status;
 
   @override
   State<EditNotesScreen> createState() => _EditNotesScreenState();
@@ -67,17 +70,21 @@ class _EditNotesScreenState extends State<EditNotesScreen> {
                           controller: _titleC,
                           keyboardType: TextInputType.emailAddress,
                           textInputAction: TextInputAction.next,
-                          decoration: const InputDecoration(
-                            floatingLabelStyle: TextStyle(color: Colors.green),
-                            border: OutlineInputBorder(
+                          decoration: InputDecoration(
+                            floatingLabelStyle: widget.model.status == 'income'
+                                ? const TextStyle(color: Colors.green)
+                                : const TextStyle(color: Colors.red),
+                            border: const OutlineInputBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(15)),
                             ),
-                            contentPadding: EdgeInsets.only(left: 40),
-                            prefixIcon: Icon(
+                            contentPadding: const EdgeInsets.only(left: 40),
+                            prefixIcon: const Icon(
                               Icons.title,
                             ),
-                            labelText: 'Pemasukan',
+                            labelText: widget.model.status == 'income'
+                                ? 'Pemasukan'
+                                : 'Pengeluaran',
                           ),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
@@ -96,14 +103,16 @@ class _EditNotesScreenState extends State<EditNotesScreen> {
                           ],
                           keyboardType: TextInputType.number,
                           textInputAction: TextInputAction.done,
-                          decoration: const InputDecoration(
-                            floatingLabelStyle: TextStyle(color: Colors.green),
-                            border: OutlineInputBorder(
+                          decoration: InputDecoration(
+                            floatingLabelStyle: widget.model.status == 'income'
+                                ? const TextStyle(color: Colors.green)
+                                : const TextStyle(color: Colors.red),
+                            border: const OutlineInputBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(15)),
                             ),
-                            contentPadding: EdgeInsets.only(left: 40),
-                            prefixIcon: Icon(
+                            contentPadding: const EdgeInsets.only(left: 40),
+                            prefixIcon: const Icon(
                               Icons.arrow_upward,
                             ),
                             labelText: 'Jumlah',

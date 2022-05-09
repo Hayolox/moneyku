@@ -40,7 +40,7 @@ class AddExpenditureScreen extends StatelessWidget {
                           keyboardType: TextInputType.emailAddress,
                           textInputAction: TextInputAction.next,
                           decoration: const InputDecoration(
-                            floatingLabelStyle: TextStyle(color: Colors.green),
+                            floatingLabelStyle: TextStyle(color: Colors.red),
                             border: OutlineInputBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(15)),
@@ -49,8 +49,8 @@ class AddExpenditureScreen extends StatelessWidget {
                             prefixIcon: Icon(
                               Icons.title,
                             ),
-                            labelText: 'Pemasukan',
-                            hintText: 'Isi pemasukan',
+                            labelText: 'Pengeluaran',
+                            hintText: 'Isi pengeluaran',
                           ),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
@@ -70,7 +70,7 @@ class AddExpenditureScreen extends StatelessWidget {
                           keyboardType: TextInputType.number,
                           textInputAction: TextInputAction.done,
                           decoration: const InputDecoration(
-                            floatingLabelStyle: TextStyle(color: Colors.green),
+                            floatingLabelStyle: TextStyle(color: Colors.red),
                             border: OutlineInputBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(15)),
@@ -80,7 +80,7 @@ class AddExpenditureScreen extends StatelessWidget {
                               Icons.arrow_upward,
                             ),
                             labelText: 'Jumlah',
-                            hintText: 'Isi jumlah pemasukan',
+                            hintText: 'Isi jumlah pengeluaran',
                           ),
                           validator: (value) {
                             if (value == null || value.isEmpty) {

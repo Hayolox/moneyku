@@ -83,7 +83,8 @@ class _NoteScreenState extends State<NoteScreen> {
                                               .status,
                                           createdAt: value
                                               .incomeDataTransaction[index]
-                                              .createdAt)),
+                                              .createdAt),
+                                      status: 'income'),
                                   transitionEffect:
                                       TransitionEffect.RIGHT_TO_LEFT),
                             );
@@ -173,22 +174,23 @@ class _NoteScreenState extends State<NoteScreen> {
                               context,
                               Transition(
                                   child: EditNotesScreen(
-                                      model: TransactionModel(
-                                          id: value
-                                              .spendingDataTransaction[index]
-                                              .id,
-                                          title: value
-                                              .spendingDataTransaction[index]
-                                              .title,
-                                          price: value
-                                              .spendingDataTransaction[index]
-                                              .price,
-                                          status: value
-                                              .spendingDataTransaction[index]
-                                              .status,
-                                          createdAt: value
-                                              .spendingDataTransaction[index]
-                                              .createdAt)),
+                                    model: TransactionModel(
+                                        id: value
+                                            .spendingDataTransaction[index].id,
+                                        title: value
+                                            .spendingDataTransaction[index]
+                                            .title,
+                                        price: value
+                                            .spendingDataTransaction[index]
+                                            .price,
+                                        status: value
+                                            .spendingDataTransaction[index]
+                                            .status,
+                                        createdAt: value
+                                            .spendingDataTransaction[index]
+                                            .createdAt),
+                                    status: 'expenditure',
+                                  ),
                                   transitionEffect:
                                       TransitionEffect.RIGHT_TO_LEFT),
                             );
