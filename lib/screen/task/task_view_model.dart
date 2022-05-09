@@ -43,7 +43,7 @@ class TaskViewModel extends ChangeNotifier {
       titleC.clear();
       priceC.clear();
       dueDate = DateTime.now();
-      toastInformation('Data Berhasil Ditambahkan');
+      // toastInformation('Data Berhasil Ditambahkan');
       notifyListeners();
     } catch (e) {
       toastAlert('Gagal Add Data');
