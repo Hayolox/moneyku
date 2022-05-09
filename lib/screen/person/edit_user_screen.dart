@@ -85,8 +85,8 @@ class _EditUserScreenState extends State<EditUserScreen> {
                             prefixIcon: Icon(
                               Icons.email,
                             ),
-                            labelText: 'Name',
-                            hintText: 'Edit Name',
+                            labelText: 'Email',
+                            hintText: 'Edit Email',
                           ),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
