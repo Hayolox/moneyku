@@ -97,9 +97,9 @@ class NotesViewModel extends ChangeNotifier {
       titleC.clear();
       priceC.clear();
       dueDate = DateTime.now();
-      if (paramRole == 'admin') {
-        toastInformation('Data Berhasil Ditambahkan');
-      }
+      // if (paramRole == 'admin') {
+      //   toastInformation('Data Berhasil Ditambahkan');
+      // }
     } catch (e) {
       toastAlert('Gagal Menambahkan Data');
     }
