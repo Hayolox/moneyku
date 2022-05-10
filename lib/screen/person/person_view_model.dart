@@ -19,7 +19,7 @@ class PersonViewModel extends ChangeNotifier {
       await UserApi().editDataUser(paramUser);
       final prefs = await SharedPreferences.getInstance();
       await prefs.setString('user', json.encode(paramUser));
-      toastInformation('Data Berhasil Ditambahkan');
+      toastInformation('Data Berhasil Diedit');
     } catch (e) {
       Fluttertoast.showToast(
           msg: "Email sudah digunakan",
