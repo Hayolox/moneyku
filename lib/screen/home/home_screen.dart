@@ -37,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  value.name,
+                  'Hi ${value.name}',
                   style: whiteTextStyle.copyWith(
                     fontSize: 20,
                   ),
