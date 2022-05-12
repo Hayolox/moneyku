@@ -105,7 +105,9 @@ class SignScreen extends StatelessWidget {
                                   onTap: () {
                                     value.changeIsHidden(value.isHideen);
                                   },
-                                  child: const Icon(Icons.remove_red_eye)),
+                                  child: value.isHideen == true
+                                      ? const Icon(Icons.visibility)
+                                      : const Icon(Icons.visibility_off)),
                               contentPadding: const EdgeInsets.only(left: 40),
                               labelText: 'Password',
                               hintText: 'Masukkan Password',
