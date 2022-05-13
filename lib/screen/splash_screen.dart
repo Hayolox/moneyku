@@ -19,7 +19,7 @@ class _SplashScreenState extends State<SplashScreen> {
     // ignore: todo
     // TODO: implement initState
     Timer(
-      const Duration(seconds: 2),
+      const Duration(seconds: 4),
       () async {
         List _getDataStorage = await getStorage();
         String? _token = _getDataStorage[0];
