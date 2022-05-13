@@ -93,7 +93,12 @@ class TaskViewModel extends ChangeNotifier {
       firstDate: DateTime(currenDate.year),
       lastDate: DateTime(currenDate.year + 1),
     );
-    dueDate = _selectDate!;
+
+    if (_selectDate != null) {
+      dueDate = _selectDate;
+    } else {
+      dueDate = DateTime.now();
+    }
     notifyListeners();
   }
 }
