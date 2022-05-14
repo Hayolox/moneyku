@@ -37,13 +37,16 @@ class TaskViewModel extends ChangeNotifier {
     }
   }
 
-  addTask(TaskModel paramTask) async {
+  addTask(TaskModel paramTask, bool statusUnitTest) async {
     try {
       await TaskApi().addTask(paramTask);
       titleC.clear();
       priceC.clear();
       dueDate = DateTime.now();
-      // toastInformation('Data Berhasil Ditambahkan');
+      if (statusUnitTest == false) {
+        toastInformation('Data Berhasil Ditambahkan');
+      }
+
       notifyListeners();
     } catch (e) {
       toastAlert('Gagal Add Data');

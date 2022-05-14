@@ -143,13 +143,16 @@ class AddTaskScreen extends StatelessWidget {
 
                           if (_formKey.currentState!.validate()) {
                             _formKey.currentState!.save();
-                            value.addTask(TaskModel(
-                              title: value.titleC.text,
-                              price: convertToInteger.text,
-                              status: 'process',
-                              deadline: value.dueDate,
-                              userId: user.id.toString(),
-                            ));
+                            value.addTask(
+                              TaskModel(
+                                title: value.titleC.text,
+                                price: convertToInteger.text,
+                                status: 'process',
+                                deadline: value.dueDate,
+                                userId: user.id.toString(),
+                              ),
+                              false,
+                            );
                           }
                         },
                         child: const Text('Submit'),
