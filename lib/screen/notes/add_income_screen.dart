@@ -144,13 +144,13 @@ class AddIncomeScreen extends StatelessWidget {
                           if (_formKey.currentState!.validate()) {
                             _formKey.currentState!.save();
                             value.addTransaction(
-                              TransactionModel(
-                                  title: value.titleC.text,
-                                  price: convertToInteger.text,
-                                  status: 'income',
-                                  createdAt: value.dueDate.toString()),
-                              user.roles,
-                            );
+                                TransactionModel(
+                                    title: value.titleC.text,
+                                    price: convertToInteger.text,
+                                    status: 'income',
+                                    createdAt: value.dueDate.toString()),
+                                user.roles,
+                                false);
                           }
                         },
                         child: const Text('Submit'),

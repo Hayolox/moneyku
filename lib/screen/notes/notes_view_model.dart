@@ -90,16 +90,19 @@ class NotesViewModel extends ChangeNotifier {
     }
   }
 
-  addTransaction(TransactionModel paramTransaction, String paramRole) async {
+  addTransaction(TransactionModel paramTransaction, String paramRole,
+      bool statusUnitTest) async {
     try {
       /// Add data transaction
       await TransactionApi().addTransaction(paramTransaction);
       titleC.clear();
       priceC.clear();
       dueDate = DateTime.now();
-      // if (paramRole == 'admin') {
-      //   toastInformation('Data Berhasil Ditambahkan');
-      // }
+      if (statusUnitTest == false) {
+        if (paramRole == 'admin') {
+          toastInformation('Data Berhasil Ditambahkan');
+        }
+      }
     } catch (e) {
       toastAlert('Gagal Menambahkan Data');
     }

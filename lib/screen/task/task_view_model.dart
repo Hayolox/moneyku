@@ -57,13 +57,13 @@ class TaskViewModel extends ChangeNotifier {
       /// conditional role employee
       if (paramRole == 'employee') {
         NotesViewModel().addTransaction(
-          TransactionModel(
-              title: paramTask.title,
-              price: paramTask.price,
-              status: 'income',
-              createdAt: DateTime.now().toString()),
-          paramRole,
-        );
+            TransactionModel(
+                title: paramTask.title,
+                price: paramTask.price,
+                status: 'income',
+                createdAt: DateTime.now().toString()),
+            paramRole,
+            false);
         allDataTask.removeAt(paramIndex);
         notifyListeners();
         toastInformation('Task Selesai');

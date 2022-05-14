@@ -27,7 +27,8 @@ void main() {
             status: 'income',
             createdAt: DateTime.now().toString(),
           ),
-          'admin');
+          'admin',
+          true);
 
       await _notes.getStatusTransaction();
       int _incomeNew = _notes.incomeDataTransaction.length;
@@ -45,7 +46,8 @@ void main() {
             status: 'spending',
             createdAt: DateTime.now().toString(),
           ),
-          'admin');
+          'admin',
+          true);
 
       await _notes.getStatusTransaction();
       int _spendingNew = _notes.spendingDataTransaction.length;
