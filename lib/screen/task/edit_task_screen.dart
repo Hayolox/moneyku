@@ -51,6 +51,7 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          backgroundColor: const Color(0xff8E75EB),
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () async =>
@@ -176,6 +177,9 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                       ),
                       Center(
                           child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: const Color(0xff8E75EB),
+                        ),
                         onPressed: () async {
                           DateTime.parse(_date).add(const Duration(days: 1));
 

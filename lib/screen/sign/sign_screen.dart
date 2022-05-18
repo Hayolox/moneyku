@@ -144,13 +144,7 @@ class SignScreen extends StatelessWidget {
                                   height: 50,
                                   width: 150,
                                   decoration: BoxDecoration(
-                                    gradient: LinearGradient(
-                                        begin: Alignment.topRight,
-                                        end: Alignment.bottomLeft,
-                                        colors: [
-                                          backroundColor1,
-                                          backroundColor2,
-                                        ]),
+                                    color: const Color(0xff8E75EB),
                                     borderRadius: BorderRadius.circular(25),
                                   ),
                                   child: Center(

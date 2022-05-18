@@ -21,6 +21,7 @@ class AddExpenditureScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          backgroundColor: const Color(0xff8E75EB),
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () async => Navigator.of(context)
@@ -134,6 +135,9 @@ class AddExpenditureScreen extends StatelessWidget {
                       ),
                       Center(
                           child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: const Color(0xff8E75EB),
+                        ),
                         onPressed: () async {
                           var convertToInteger =
                               MaskedTextController(text: '', mask: '000000000');

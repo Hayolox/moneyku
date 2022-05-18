@@ -91,6 +91,7 @@ class _NoteScreenState extends State<NoteScreen> {
                           },
                           title: Text(
                             value.incomeDataTransaction[index].title,
+                            maxLines: 2,
                             style: primaryTextStyle.copyWith(),
                           ),
                           subtitle: Text(
@@ -117,6 +118,9 @@ class _NoteScreenState extends State<NoteScreen> {
                 ),
                 Center(
                     child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: const Color(0xff8E75EB),
+                  ),
                   onPressed: () {
                     Navigator.push(
                       context,
@@ -197,6 +201,7 @@ class _NoteScreenState extends State<NoteScreen> {
                           },
                           title: Text(
                             value.spendingDataTransaction[index].title,
+                            maxLines: 2,
                             style: primaryTextStyle.copyWith(),
                           ),
                           subtitle: Text(
@@ -223,6 +228,9 @@ class _NoteScreenState extends State<NoteScreen> {
                 ),
                 Center(
                     child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: const Color(0xff8E75EB),
+                  ),
                   onPressed: () {
                     Navigator.push(
                       context,

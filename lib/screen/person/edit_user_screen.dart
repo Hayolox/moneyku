@@ -34,6 +34,7 @@ class _EditUserScreenState extends State<EditUserScreen> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          backgroundColor: const Color(0xff8E75EB),
           title: const Text('Edit User'),
           centerTitle: true,
         ),
@@ -104,6 +105,9 @@ class _EditUserScreenState extends State<EditUserScreen> {
                       ),
                       Center(
                           child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: const Color(0xff8E75EB),
+                        ),
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
                             _formKey.currentState!.save();

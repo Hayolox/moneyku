@@ -31,6 +31,7 @@ class _TaskcreenState extends State<Taskcreen> {
 
   Widget appBar() {
     return AppBar(
+      backgroundColor: const Color(0xff8E75EB),
       title: const Text('Task'),
       centerTitle: true,
     );
@@ -84,6 +85,7 @@ class _TaskcreenState extends State<Taskcreen> {
                       },
                       title: Text(
                         value.allDataTask[index].title,
+                        maxLines: 2,
                         style: primaryTextStyle.copyWith(),
                       ),
                       subtitle: Text(DateFormat('yyy-MM-dd')
@@ -117,6 +119,9 @@ class _TaskcreenState extends State<Taskcreen> {
                 content(),
                 Center(
                     child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: const Color(0xff8E75EB),
+                  ),
                   onPressed: () {
                     Navigator.push(
                       context,

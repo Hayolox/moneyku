@@ -50,6 +50,7 @@ class _EditNotesScreenState extends State<EditNotesScreen> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          backgroundColor: const Color(0xff8E75EB),
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () async => Navigator.of(context)
@@ -181,6 +182,9 @@ class _EditNotesScreenState extends State<EditNotesScreen> {
                       ),
                       Center(
                           child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: const Color(0xff8E75EB),
+                        ),
                         onPressed: () {
                           var convertToInteger =
                               MaskedTextController(text: '', mask: '000000000');
