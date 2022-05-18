@@ -219,10 +219,16 @@ class _HomeScreenState extends State<HomeScreen> {
                       },
                       child: ListTile(
                         contentPadding: EdgeInsets.zero,
-                        leading: const Icon(
-                          Icons.arrow_upward,
-                          color: Color(0xff3CAE5C),
-                        ),
+                        leading:
+                            value.allDataTransaction[index].status == 'income'
+                                ? const Icon(
+                                    Icons.arrow_downward,
+                                    color: Color(0xff3CAE5C),
+                                  )
+                                : const Icon(
+                                    Icons.arrow_upward,
+                                    color: Colors.red,
+                                  ),
                         title: Text(
                           value.allDataTransaction[index].title,
                           maxLines: 2,
